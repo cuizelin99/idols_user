@@ -1,0 +1,69 @@
+@(task: models.tasks.startZeppelinTask, index: Integer, user: models.auth.User)
+
+
+    
+    @helper.form(action = controllers.routes.WorkflowController.runTask(index), 'id -> "form".concat(index.toString))  {
+    	
+    	
+	    <ul style="list-style:none">
+	    	<li>
+		    	<div class="indivsteps">
+					Reservation name
+			</div>
+			<p>
+		    		<input type="text" id="reservation@index" name="reservation" value="@task.reservationName" required> 
+		    	</p>
+
+		    	<div class="indivsteps">
+					TACC user name
+			</div>		    	
+			<p>
+		    		<input type="text" id="taccName@index" name="taccName" value="tacc name" required> 
+		    	</p>
+		    	
+		    </li>
+	    
+		    <li>
+	    	<li>
+			    <div class="indivsteps">
+					Start Zeppelin
+				</div>
+			    <p>Click the submit button once; wait 10 seconds for Zeppelin UI URL to show up</p>
+			    <p>
+			    	<button type="submit" id="submit@index">Submit</button>
+			    </p>
+
+		    </li>
+
+		    
+		 </ul>
+		 
+		<div class="status_none" id="status@index"></div>
+    
+	    <script>
+		    $('#form@index')
+		    .ajaxForm({
+		        url : '@controllers.routes.WorkflowController.runTask(index)', 
+		        success : function (response) {
+		        	document.getElementById('status' + @index).className = "status_success";
+		           	document.getElementById('status' + @index).innerHTML = response;
+		        },
+		        error : function (xhr, status, error) {
+		           document.getElementById('status' + @index).className = "status_error";
+		           document.getElementById('status' + @index).innerHTML = xhr.responseText;
+		        },
+		        
+		    });
+		</script>	
+		 
+
+	         
+     }  
+     
+
+   
+  
+
+
+
+ 

@@ -1,0 +1,111 @@
+@import models.tasks._	
+
+@(user: models.auth.User, head: String, tasks: Array[models.tasks.Task])
+
+@idols_main(head, Some(user)) {
+    
+    <h2>@head</h2>
+    	    	<div class="steps">@taskManagement(user, tasks.length, tasks)</div>
+    
+	    @for(index <- 0 until tasks.length) {
+	    
+	       <div class="steps">
+	       		<div class="step1">
+					Task @(index + 1): @tasks(index).task_name
+				</div>
+
+			<ul style="list-style: none">
+				<li>
+					<div id="description@index" class="indivsteps"></div>
+				</li>
+			</ul>
+
+			@tasks(index).task_type  match {
+							case "UploadTask"       => { @upload(tasks(index).asInstanceOf[models.tasks.UploadTask], index) }
+						 	case "checkClusterTask"      => { @clusterStatus(tasks(index).asInstanceOf[models.tasks.checkClusterTask], index) }
+						 	case "runWordCountTask"     => { @wordcount(tasks(index).asInstanceOf[models.tasks.runWordCountTask], index) }
+						 	case "checkHadoopJobStatusTask"   => { @jobStatus(tasks(index).asInstanceOf[models.tasks.checkHadoopJobStatusTask], index) }				 	
+						 	case "showResultTask"       => { @showResult(tasks(index).asInstanceOf[models.tasks.showResultTask], index) }
+						 	case "startZeppelinTask"    => { @zeppelin(tasks(index).asInstanceOf[models.tasks.startZeppelinTask], index, user) }
+						 	case "runMPITask"    		=> { @mpi(tasks(index).asInstanceOf[models.tasks.runMPITask], index) }
+						 	case "streamTweetsTask"    	=> { @streamTweets(tasks(index).asInstanceOf[models.tasks.streamTweetsTask], index) }
+						 	case "runScriptTask"     	=> { @runScript(tasks(index).asInstanceOf[models.tasks.runScriptTask], index) }
+							case "RunInputScriptTask"     	=> { @runInputScript(tasks(index).asInstanceOf[models.tasks.RunInputScriptTask], index) }
+						 }	
+		   </div>
+	    }
+	    
+	<script src="@controllers.routes.Assets.versioned("javascripts/upload.js")"></script>    
+	<script>
+
+	
+	function getDescription(index) {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+				document.getElementById('description' + index).innerHTML = "Description: " + this.responseText;
+			}
+		}
+		xmlHttp.open("GET", "/description?index=" + index, true);
+		xmlHttp.send();
+	}
+	
+	@for(index <- 0 until tasks.length) {
+		console.log(@index);
+		if(@tasks(index).task_type.equals("showResultTask")){
+			document.getElementById('directory' + @index).onchange = function() {
+				console.log("changed" + @index);
+				var passed_value = document.getElementById('directory' + @index).value;
+				var file_name = "";
+				file_name = passed_value.substring(passed_value.lastIndexOf("/") + 1, passed_value.lastIndexOf(".WAV"));
+				/* if(@tasks(index).task_name.contains("Audio")){
+					file_name = passed_value.substring(passed_value.lastIndexOf("/"), passed_value.lastIndexOf(".WAV"));
+				}
+				else{
+					file_name = passed_value.substring(passed_value.lastIndexOf("/"), passed_value.lastIndexOf(".WAV"));
+				} */
+				console.log(file_name);
+				var i;
+				@for(i <- 0 until tasks.length){
+					if(@i != @index){
+						if(@tasks(i).task_type.equals("showResultTask") && !@tasks(i).task_name.equals("Show Human Transcription") && !@tasks(i).task_name.equals("Show IDOLS Transcription") && !@tasks(i).task_name.equals("Show Google Transcription") ){
+							var x = document.getElementById('root' + @i);
+							console.log(file_name);
+							console.log(x.value);
+							//if(x.value.indexOf(".WAV") != -1)
+							x.value = x.value.substring(0, x.value.lastIndexOf("/") + 1);
+							x.value += file_name;
+							if(@tasks(i).task_name.contains("Audio")){
+								x.value += ".WAV";
+							}
+							if(@tasks(i).task_name.contains("Transcription")){
+								x.value += ".WAV.txt";
+							}
+							if(@tasks(i).task_name.contains("Label")){
+								x.value += ".WAV.txt.json";
+							}
+						}
+						if(@tasks(i).task_type.equals("RunInputScriptTask")){
+							var y = document.getElementById(0 + 'val' + @i);
+							console.log(file_name);
+							console.log(y.value);
+							y.value = file_name.substring(0);
+							y.value += ".WAV";
+							if(@tasks(i).task_name.contains("Text Labeling")){
+								y.value += ".txt";
+							}
+						}
+					}
+				}
+				};
+		} 
+		getDescription(@index);
+	}
+	
+	//document.getElementById('directory' + 0).onchange = function() {updateFields(0, @tasks)};
+	
+	
+	</script>
+	
+	 
+}

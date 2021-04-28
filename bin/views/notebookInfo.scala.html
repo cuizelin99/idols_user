@@ -1,0 +1,18 @@
+@import play.api.data.Form
+@import play.api.i18n.Messages
+@import play.api.mvc.RequestHeader
+@import org.webjars.play.WebJarsUtil
+@import controllers.AssetsFinder
+@import forms.RequestForm.Data
+@import b3.inline.fieldConstructor
+
+@(firstName: String, lastName: String, email: String, username: String, pass: String)(implicit request: RequestHeader, messages: Messages, webJarsUtil: WebJarsUtil, assets: AssetsFinder)
+
+@main("Account Information") {
+	<div class="text" style="color: #1b9993;">
+    Hello @firstName @lastName (@email), <BR>
+    Please use the following account information to sign in.
+    Username: <b>@username</b> 
+    Password: <b>@pass</b>
+    </div>
+}

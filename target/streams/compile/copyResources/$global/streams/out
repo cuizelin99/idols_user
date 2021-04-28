@@ -1,0 +1,7 @@
+[0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/petercui/workspace/idols/idols_user/conf/logback.xml,/Users/petercui/workspace/idols/idols_user/target/scala-2.12/classes/logback.xml)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/petercui/workspace/idols/idols_user/conf/messages,/Users/petercui/workspace/idols/idols_user/target/scala-2.12/classes/messages)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/petercui/workspace/idols/idols_user/conf/silhouette.conf,/Users/petercui/workspace/idols/idols_user/target/scala-2.12/classes/silhouette.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/petercui/workspace/idols/idols_user/conf/application.prod.conf,/Users/petercui/workspace/idols/idols_user/target/scala-2.12/classes/application.prod.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/petercui/workspace/idols/idols_user/conf/application.conf,/Users/petercui/workspace/idols/idols_user/target/scala-2.12/classes/application.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/petercui/workspace/idols/idols_user/conf/routes,/Users/petercui/workspace/idols/idols_user/target/scala-2.12/classes/routes)[0m
