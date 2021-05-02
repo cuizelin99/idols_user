@@ -29,6 +29,8 @@ libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2
 // https://mvnrepository.com/artifact/net.sourceforge.htmlcleaner/htmlcleaner
 libraryDependencies += "net.sourceforge.htmlcleaner" % "htmlcleaner" % "2.21"
 
+libraryDependencies += "com.lihaoyi" %% "os-lib" % "0.7.1"
+
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "edu.utexas.tacc.controllers._"
 

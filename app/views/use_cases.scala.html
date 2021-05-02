@@ -1,4 +1,4 @@
-@(user: models.auth.User, cases: String)
+@(user: models.auth.User, cases: String, json_files: Array[String], head_list: Array[String])
 
 @idols_main("Use Cases", Some(user)) {
 
@@ -7,6 +7,10 @@
 		<div class="text"><a href="@controllers.routes.HomeController.show_job_management()">Use Case: Manage User Jobs</a></div>
 		<div class="text"><a href="@controllers.routes.HomeController.show_submit_script()">Use Case: Submit Scripts</a></div>
 	
+	}
+	
+	@for(index <- 0 until head_list.length) {
+	    	<div class="text" id="usecase@index"><a href="@controllers.routes.WorkflowController.showWorkflowDynamically(json_files(index))">@head_list(index)</a></div>
 	}
 	
 	

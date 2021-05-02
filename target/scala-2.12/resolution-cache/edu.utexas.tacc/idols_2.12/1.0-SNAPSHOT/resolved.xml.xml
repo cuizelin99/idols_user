@@ -4,7 +4,7 @@
 		module="idols_2.12"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20210428171238"
+		publication="20210502171154"
 	>
 		<description>
 		idols
@@ -50,6 +50,7 @@
 		<dependency org="com.typesafe.play" name="play-akka-http-server_2.12" rev="2.6.7" conf="compile->default(compile)"/>
 		<dependency org="org.scalatestplus.play" name="scalatestplus-play_2.12" rev="3.1.2" conf="test->default(compile)"/>
 		<dependency org="net.sourceforge.htmlcleaner" name="htmlcleaner" rev="2.21" conf="compile->default(compile)"/>
+		<dependency org="com.lihaoyi" name="os-lib_2.12" rev="0.7.1" conf="compile->default(compile)"/>
 		<dependency org="com.mohiva" name="play-silhouette_2.12" rev="5.0.0" conf="compile->default(compile)"/>
 		<dependency org="com.mohiva" name="play-silhouette-password-bcrypt_2.12" rev="5.0.0" conf="compile->default(compile)"/>
 		<dependency org="com.mohiva" name="play-silhouette-persistence_2.12" rev="5.0.0" conf="compile->default(compile)"/>

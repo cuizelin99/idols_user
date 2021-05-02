@@ -1,2 +1,1 @@
-[0m[[0m[0minfo[0m] [0m[0mFormatting 58 Scala sources {file:/Users/petercui/workspace/idols/idols_user/}root(compile) ...[0m
-[0m[[0m[33mwarn[0m] [0m[0mScalariform parser error for /Users/petercui/workspace/idols/idols_user/app/controllers/SignInController.scala: Expected token RPAREN but got Token(ARROW,=>,3945,=>)[0m
+[0m[[0m[0minfo[0m] [0m[0mFormatting 3 Scala sources {file:/Users/petercui/workspace/idols/idols_user/}root(compile) ...[0m

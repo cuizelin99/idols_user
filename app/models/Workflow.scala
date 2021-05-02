@@ -38,6 +38,13 @@ case class Workflow() {
   }
 
   /**
+   * get head variable
+   */
+  def get_head(): String = {
+    return "" + head
+  }
+
+  /**
    * export current workflow into a json object
    * @return a JsValue - json object that represents this workflow
    */

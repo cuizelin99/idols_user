@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/petercui/workspace/idols/idols_user/conf/routes
-// @DATE:Wed Apr 28 17:13:03 CDT 2021
+// @DATE:Sun May 02 17:13:23 CDT 2021
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -20,7 +20,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:83
+    // @LINE:93
     def at: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.at",
       """
@@ -46,7 +46,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:68
+  // @LINE:78
   class ReverseSignInController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -54,7 +54,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:68
+    // @LINE:78
     def view: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.SignInController.view",
       """
@@ -64,7 +64,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:72
+    // @LINE:82
     def googleSubmit: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.SignInController.googleSubmit",
       """
@@ -74,7 +74,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:70
+    // @LINE:80
     def submit: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.SignInController.submit",
       """
@@ -94,7 +94,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:63
+    // @LINE:73
     def getTaskDescription: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.getTaskDescription",
       """
@@ -104,7 +104,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:21
+    // @LINE:70
+    def save_workflow: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.WorkflowController.save_workflow",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "saveworkflow"})
+        }
+      """
+    )
+  
+    // @LINE:22
     def showScriptWorkflow: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.showScriptWorkflow",
       """
@@ -114,7 +124,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:60
+    // @LINE:28
+    def showCompareTransWorkflow: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.WorkflowController.showCompareTransWorkflow",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "comparetrans_workflow"})
+        }
+      """
+    )
+  
+    // @LINE:67
     def download_workflow: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.download_workflow",
       """
@@ -124,7 +144,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:54
+    // @LINE:26
+    def showExplicitWorkflow: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.WorkflowController.showExplicitWorkflow",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "explicit_workflow"})
+        }
+      """
+    )
+  
+    // @LINE:61
     def generateTreeFromJSON: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.generateTreeFromJSON",
       """
@@ -134,12 +164,42 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:47
+    // @LINE:27
+    def showAudioTransWorkflow: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.WorkflowController.showAudioTransWorkflow",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "audiotrans_workflow"})
+        }
+      """
+    )
+  
+    // @LINE:54
     def submit_JSON: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.submit_JSON",
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "submit_JSON"})
+        }
+      """
+    )
+  
+    // @LINE:29
+    def showTrainModelWorkflow: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.WorkflowController.showTrainModelWorkflow",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "trainmodel_workflow"})
+        }
+      """
+    )
+  
+    // @LINE:25
+    def showParallelWorkflow: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.WorkflowController.showParallelWorkflow",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "parallel_workflow"})
         }
       """
     )
@@ -154,7 +214,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:28
+    // @LINE:35
     def downloadFile: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.downloadFile",
       """
@@ -164,7 +224,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:26
+    // @LINE:33
     def runTask: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.runTask",
       """
@@ -174,7 +234,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:20
+    // @LINE:23
+    def showTweetsWorkflow: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.WorkflowController.showTweetsWorkflow",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "tweets_workflow"})
+        }
+      """
+    )
+  
+    // @LINE:21
     def showFileWorkflow: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.showFileWorkflow",
       """
@@ -184,7 +254,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:51
+    // @LINE:20
+    def showWorkflowDynamically: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.WorkflowController.showWorkflowDynamically",
+      """
+        function(path0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "dynamicworkflow" + _qS([(""" + implicitly[play.api.mvc.QueryStringBindable[String]].javascriptUnbind + """)("path", path0)])})
+        }
+      """
+    )
+  
+    // @LINE:58
     def generateTree: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.generateTree",
       """
@@ -194,7 +274,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:57
+    // @LINE:24
+    def showSpeechWorkflow: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.WorkflowController.showSpeechWorkflow",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "speech_workflow"})
+        }
+      """
+    )
+  
+    // @LINE:64
     def refreshTree: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.refreshTree",
       """
@@ -204,7 +294,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:85
+    // @LINE:95
     def getAudio: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.getAudio",
       """
@@ -228,7 +318,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:66
+    // @LINE:76
     def signOut: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApplicationController.signOut",
       """
@@ -250,7 +340,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:74
+  // @LINE:84
   class ReverseRequestController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -258,7 +348,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:74
+    // @LINE:84
     def view: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.RequestController.view",
       """
@@ -268,7 +358,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:76
+    // @LINE:86
     def submit: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.RequestController.submit",
       """
@@ -288,7 +378,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:34
+    // @LINE:41
     def generate_user: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.generate_user",
       """
@@ -298,7 +388,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:42
+    // @LINE:49
     def show_submit_script: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.show_submit_script",
       """
@@ -318,7 +408,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:44
+    // @LINE:51
     def submit_script: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.submit_script",
       """
@@ -328,7 +418,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:39
+    // @LINE:46
     def job_management: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.job_management",
       """
@@ -338,7 +428,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:32
+    // @LINE:39
     def show_generate_user: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.show_generate_user",
       """
@@ -348,7 +438,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:37
+    // @LINE:44
     def show_job_management: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.show_job_management",
       """
@@ -390,7 +480,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:90
+  // @LINE:100
   class ReverseGetDynamicFileController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -398,7 +488,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:90
+    // @LINE:100
     def getFile: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.GetDynamicFileController.getFile",
       """

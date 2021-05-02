@@ -17,6 +17,7 @@ import models.auth.Roles._
 import models.auth.WithRole
 import models.auth.User
 import models.auth.TaccCredential
+import models.Workflow
 import utils.AutoSignUp
 import utils.NotebookAllocator
 
@@ -74,6 +75,8 @@ class HomeController @Inject() (
   val pw2 = new PrintWriter(configuration.underlying.getString("jupyter.sessions"));
   pw2.close();
 
+  var temp_workflow = new Workflow()
+
   // create user accounts that are ready upon start up
   utils.AutoSignUp.save_user(userService, authTokenService, avatarService, credentialsProvider, authInfoRepository, passwordHasherRegistry, Json.parse(Source.fromFile(configuration.underlying.getString("users")).getLines().mkString))
 
@@ -89,7 +92,20 @@ class HomeController @Inject() (
    */
   def use_cases() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
     val cases = Source.fromFile(configuration.underlying.getString("use.cases")).getLines().mkString
-    Future.successful(Ok(views.html.use_cases(request.identity, cases)))
+    val workflow_files = os.list(os.pwd / "public" / "workflows" / "saved_workflows")
+    val json_files = scala.collection.mutable.ArrayBuffer.empty[String]
+    for (file <- workflow_files)
+      if (file.toString().endsWith(".json")) {
+        json_files += file.toString()
+        println(file)
+      }
+    val head_list = scala.collection.mutable.ArrayBuffer.empty[String]
+    for (json_file <- json_files) {
+      temp_workflow.reset()
+      temp_workflow.import_JSON(Json.parse(Source.fromFile(json_file).getLines().mkString), request.identity)
+      head_list += "Use Case: " + temp_workflow.get_head()
+    }
+    Future.successful(Ok(views.html.use_cases(request.identity, cases, json_files.toArray, head_list.toArray)))
   }
 
   /**

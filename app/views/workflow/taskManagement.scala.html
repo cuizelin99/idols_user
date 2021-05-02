@@ -43,12 +43,18 @@
 	@helper.form(action = controllers.routes.WorkflowController.runTask(-1), 'enctype -> "multipart/form-data") {
 		<input type="file" name="new_workflow" value="new_workflow"><button type="submit">Upload New Workflow</button>
 	}
+	
+	<button type="button" id="save_workflow">Save Current Workflow</button>
 	    
-	<button type="button" id="current_workflow">Download Current Workflow</button>
+	<button type="button" id="current_workflow">Download Current Workflow</button>	
 }
 
 
 <script>
+	document.getElementById("save_workflow").onclick = function () {
+		location.href = "/saveworkflow";
+	};
+	
 	document.getElementById("current_workflow").onclick = function () {
 		location.href = "/downloadworkflow";
 	};
