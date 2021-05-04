@@ -1,20 +1,45 @@
 @(user: models.auth.User, cases: String, json_files: Array[String], head_list: Array[String])
 
 @idols_main("Use Cases", Some(user)) {
-
+	
+	<div style="border:3px solid;margin-top: 20px;">
+	
 	@if(user.role == models.auth.Roles.AdminRole) {
+		<p style="font-size:24px;margin-left: 16px;"> Admin Use Cases: </p>
 		<div class="text"><a href="@controllers.routes.HomeController.show_generate_user()">Use Case: Generate Random Users</a></div>
 		<div class="text"><a href="@controllers.routes.HomeController.show_job_management()">Use Case: Manage User Jobs</a></div>
 		<div class="text"><a href="@controllers.routes.HomeController.show_submit_script()">Use Case: Submit Scripts</a></div>
 	
 	}
-	
-	@for(index <- 0 until head_list.length) {
-	    	<div class="text" id="usecase@index"><a href="@controllers.routes.WorkflowController.showWorkflowDynamically(json_files(index))">@head_list(index)</a></div>
-	}
+	</div>
 	
 	
+	<div style="border:3px solid;margin-top: 20px;">
+		<p style="font-size:24px;margin-left: 16px;"> The following use cases are from public/workflows/saved_workflows </p>
 	<div class="text"><a href="@controllers.routes.WorkflowController.showWorkflow()">Use Case: Set Up Workflow</a></div>
+	@for(index <- 0 until head_list.length) {
+		<div style="text-align: left;">
+	    	<p class="text" id="usecase@index" style="text-align: left;"><a href="@controllers.routes.WorkflowController.showWorkflowDynamically(json_files(index))">@head_list(index)</a></p>
+	    	<button type="button" id="download_workflow@index" style="margin-left: 16px;">Download</button>
+	    <button type="button" id="remove_workflow@index">Remove</button>	
+	    </div>
+	}
+	</div>
+	
+	
+	
 
 
 }
+
+
+<script>
+	@for(index <- 0 until head_list.length){
+	document.getElementById("download_workflow@index").onclick = function () {
+		location.href = "/downloadselectedworkflow/@json_files(index)";
+	};
+	document.getElementById("remove_workflow@index").onclick = function () {
+		location.href = "/removeworkflow/@json_files(index)";
+	};
+	}
+</script>

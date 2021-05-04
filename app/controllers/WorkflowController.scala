@@ -47,6 +47,7 @@ class WorkflowController @Inject() (
   var workflow_json = configuration.underlying.getString("script.workflow.json")
 
   var new_workflow = new Workflow()
+  var temp_workflow = new Workflow()
   val working_directory = Paths.get(configuration.underlying.getString("working.directory"))
 
   var audio_directory = "/home/idols/resources/audio_data/all_three_transcribed";
@@ -59,99 +60,6 @@ class WorkflowController @Inject() (
    * An Action to render the Workflow page.
    */
   def showWorkflow() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
-    generate_workflow(workflow_json, request.identity)
-    Future.successful(Ok(views.html.workflow.workflow(request.identity, workflow.head, tasks.toArray)))
-  }
-
-  /**
-   * An Action to render the File Upload Workflow page.
-   */
-  def showFileWorkflow() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
-    workflow_json = configuration.underlying.getString("file.workflow.json")
-    generate_workflow(workflow_json, request.identity)
-    Future.successful(Ok(views.html.workflow.workflow(request.identity, workflow.head, tasks.toArray)))
-  }
-
-  /**
-   * An Action to render the Run Script Workflow page.
-   */
-  def showScriptWorkflow() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
-    workflow_json = configuration.underlying.getString("script.workflow.json")
-    generate_workflow(workflow_json, request.identity)
-    Future.successful(Ok(views.html.workflow.workflow(request.identity, workflow.head, tasks.toArray)))
-  }
-
-  /**
-   * An Action to render the Tweets Workflow page.
-   */
-  def showTweetsWorkflow() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
-    workflow_json = configuration.underlying.getString("tweets.workflow.json")
-    generate_workflow(workflow_json, request.identity)
-    Future.successful(Ok(views.html.workflow.workflow(request.identity, workflow.head, tasks.toArray)))
-  }
-
-  /**
-   * An Action to render the Parallel Job Array Workflow page.
-   */
-  def showParallelWorkflow() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
-    workflow_json = configuration.underlying.getString("parallel.workflow.json")
-    generate_workflow(workflow_json, request.identity)
-    Future.successful(Ok(views.html.workflow.workflow(request.identity, workflow.head, tasks.toArray)))
-  }
-
-  /**
-   * An Action to render the Explicit Parallel R Workflow page.
-   */
-  def showExplicitWorkflow() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
-    workflow_json = configuration.underlying.getString("explicit.workflow.json")
-    generate_workflow(workflow_json, request.identity)
-    Future.successful(Ok(views.html.workflow.workflow(request.identity, workflow.head, tasks.toArray)))
-  }
-
-  /**
-   * An Action to render the Audio Transcription Workflow page.
-   */
-  def showAudioTransWorkflow() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
-    workflow_json = configuration.underlying.getString("audiotrans.workflow.json")
-    generate_workflow(workflow_json, request.identity)
-    val audio_json = tasks(0).get_json()
-    val audio_string = (audio_json \ "file_path").as[String]
-    if (!audio_string.endsWith(".json")) {
-      audio_directory = audio_string
-    }
-    println("AUDIO_PATH:: 	" + audio_directory)
-    Future.successful(Ok(views.html.workflow.workflow(request.identity, workflow.head, tasks.toArray)))
-  }
-
-  /**
-   * An Action to render the Compare Transcriptions Workflow page.
-   */
-  def showCompareTransWorkflow() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
-    workflow_json = configuration.underlying.getString("comparetrans.workflow.json")
-    generate_workflow(workflow_json, request.identity)
-    val audio_json = tasks(0).get_json()
-    audio_directory = (audio_json \ "file_path").as[String]
-    println("AUDIO_PATH:: 	" + audio_directory)
-    Future.successful(Ok(views.html.workflow.workflow(request.identity, workflow.head, tasks.toArray)))
-  }
-
-  /**
-   * An Action to render the Train and Compare Models Workflow page.
-   */
-  def showTrainModelWorkflow() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
-    workflow_json = configuration.underlying.getString("trainmodel.workflow.json")
-    generate_workflow(workflow_json, request.identity)
-    val audio_json = tasks(0).get_json()
-    audio_directory = (audio_json \ "file_path").as[String]
-    println("AUDIO_PATH:: 	" + audio_directory)
-    Future.successful(Ok(views.html.workflow.workflow(request.identity, workflow.head, tasks.toArray)))
-  }
-
-  /**
-   * An Action to render the Deep Speech Workflow page.
-   */
-  def showSpeechWorkflow() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
-    workflow_json = configuration.underlying.getString("speech.workflow.json")
     generate_workflow(workflow_json, request.identity)
     Future.successful(Ok(views.html.workflow.workflow(request.identity, workflow.head, tasks.toArray)))
   }
@@ -229,6 +137,39 @@ class WorkflowController @Inject() (
   def download_workflow() = silhouette.SecuredAction.async {
     println(Json.prettyPrint(workflow.export_JSON()))
     Future.successful(Ok(Json.prettyPrint(workflow.export_JSON())))
+  }
+
+  /**
+   * Download selected workflow as a json file
+   */
+  def download_selected_workflow(fileName: String) = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
+    workflow.reset()
+    workflow.import_JSON(Json.parse(Source.fromFile(fileName).getLines().mkString), request.identity)
+    println(Json.prettyPrint(workflow.export_JSON()))
+    Future.successful(Ok(Json.prettyPrint(workflow.export_JSON())))
+  }
+
+  /**
+   * Remove selected workflow as a json file
+   */
+  def remove_selected_workflow(fileName: String) = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
+    if (os.exists(os.Path(fileName)))
+      os.remove(os.Path(fileName))
+    val cases = Source.fromFile(configuration.underlying.getString("use.cases")).getLines().mkString
+    val workflow_files = os.list(os.pwd / "public" / "workflows" / "saved_workflows")
+    val json_files = scala.collection.mutable.ArrayBuffer.empty[String]
+    for (file <- workflow_files)
+      if (file.toString().endsWith(".json")) {
+        json_files += file.toString()
+        println(file)
+      }
+    val head_list = scala.collection.mutable.ArrayBuffer.empty[String]
+    for (json_file <- json_files) {
+      temp_workflow.reset()
+      temp_workflow.import_JSON(Json.parse(Source.fromFile(json_file).getLines().mkString), request.identity)
+      head_list += "Use Case: " + temp_workflow.get_head()
+    }
+    Future.successful(Ok(views.html.use_cases(request.identity, cases, json_files.toArray, head_list.toArray)))
   }
 
   /**

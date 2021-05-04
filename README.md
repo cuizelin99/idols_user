@@ -1,1 +1,2 @@
 # idols_user
+IDOLS is a web application framework that allows user to customize the web application including dynamically compose different workflows and generate new users on demand through simple configuration files. To enhance the accessibility of large cyberinfrastructure to users from diverse domain fields, the framework includes a set of pre-built task modules to help bridge users with remote hardware and software resources.

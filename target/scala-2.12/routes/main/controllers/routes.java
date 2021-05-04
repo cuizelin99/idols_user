@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/petercui/workspace/idols/idols_user/conf/routes
-// @DATE:Sun May 02 17:13:23 CDT 2021
+// @DATE:Tue May 04 15:39:51 CDT 2021
 
 package controllers;
 

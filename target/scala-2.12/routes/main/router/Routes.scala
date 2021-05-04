@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/petercui/workspace/idols/idols_user/conf/routes
-// @DATE:Sun May 02 17:13:23 CDT 2021
+// @DATE:Tue May 04 15:39:51 CDT 2021
 
 package router
 
@@ -23,13 +23,13 @@ class Routes(
   Assets_4: controllers.Assets,
   // @LINE:19
   WorkflowController_6: controllers.WorkflowController,
-  // @LINE:78
+  // @LINE:75
   SignInController_2: controllers.SignInController,
-  // @LINE:84
+  // @LINE:81
   RequestController_3: controllers.RequestController,
-  // @LINE:91
+  // @LINE:88
   webjars_Routes_0: webjars.Routes,
-  // @LINE:100
+  // @LINE:97
   GetDynamicFileController_0: controllers.GetDynamicFileController,
   val prefix: String
 ) extends GeneratedRouter {
@@ -44,13 +44,13 @@ class Routes(
     Assets_4: controllers.Assets,
     // @LINE:19
     WorkflowController_6: controllers.WorkflowController,
-    // @LINE:78
+    // @LINE:75
     SignInController_2: controllers.SignInController,
-    // @LINE:84
+    // @LINE:81
     RequestController_3: controllers.RequestController,
-    // @LINE:91
+    // @LINE:88
     webjars_Routes_0: webjars.Routes,
-    // @LINE:100
+    // @LINE:97
     GetDynamicFileController_0: controllers.GetDynamicFileController
   ) = this(errorHandler, HomeController_1, ApplicationController_5, Assets_4, WorkflowController_6, SignInController_2, RequestController_3, webjars_Routes_0, GetDynamicFileController_0, "/")
 
@@ -72,15 +72,6 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """workflow""", """controllers.WorkflowController.showWorkflow()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """dynamicworkflow""", """controllers.WorkflowController.showWorkflowDynamically(path:String)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """file_workflow""", """controllers.WorkflowController.showFileWorkflow()"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """script_workflow""", """controllers.WorkflowController.showScriptWorkflow()"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """tweets_workflow""", """controllers.WorkflowController.showTweetsWorkflow()"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """speech_workflow""", """controllers.WorkflowController.showSpeechWorkflow()"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """parallel_workflow""", """controllers.WorkflowController.showParallelWorkflow()"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """explicit_workflow""", """controllers.WorkflowController.showExplicitWorkflow()"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """audiotrans_workflow""", """controllers.WorkflowController.showAudioTransWorkflow()"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """comparetrans_workflow""", """controllers.WorkflowController.showCompareTransWorkflow()"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """trainmodel_workflow""", """controllers.WorkflowController.showTrainModelWorkflow()"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """workflow""", """controllers.WorkflowController.runTask(index:Integer)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """download""", """controllers.WorkflowController.downloadFile(path:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """generate_random_users""", """controllers.HomeController.show_generate_user()"""),
@@ -94,6 +85,8 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """directorytreeJSON""", """controllers.WorkflowController.generateTreeFromJSON(rootPath:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """directorytreeRefresh""", """controllers.WorkflowController.refreshTree(rootPath:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """downloadworkflow""", """controllers.WorkflowController.download_workflow()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """downloadselectedworkflow/""" + "$" + """file<.+>""", """controllers.WorkflowController.download_selected_workflow(file:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """removeworkflow/""" + "$" + """file<.+>""", """controllers.WorkflowController.remove_selected_workflow(file:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """saveworkflow""", """controllers.WorkflowController.save_workflow()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """description""", """controllers.WorkflowController.getTaskDescription(index:Integer)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """signOut""", """controllers.ApplicationController.signOut"""),
@@ -102,7 +95,7 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """googleSignIn""", """controllers.SignInController.googleSubmit(idTokenString:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """request""", """controllers.RequestController.view"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """request""", """controllers.RequestController.submit"""),
-    prefixed_webjars_Routes_0_38.router.documentation,
+    prefixed_webjars_Routes_0_31.router.documentation,
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """images/""" + "$" + """file<.+>""", """controllers.Assets.at(path:String = "/public/images", file:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/stylesheets/DataTables-1.10.18/images/""" + "$" + """file<.+>""", """controllers.Assets.at(path:String = "/public/images", file:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """audio_data/""" + "$" + """file<.+>""", """controllers.WorkflowController.getAudio(file:String)"""),
@@ -260,173 +253,11 @@ class Routes(
     )
   )
 
-  // @LINE:21
-  private[this] lazy val controllers_WorkflowController_showFileWorkflow8_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("file_workflow")))
-  )
-  private[this] lazy val controllers_WorkflowController_showFileWorkflow8_invoker = createInvoker(
-    WorkflowController_6.showFileWorkflow(),
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.WorkflowController",
-      "showFileWorkflow",
-      Nil,
-      "GET",
-      this.prefix + """file_workflow""",
-      """""",
-      Seq()
-    )
-  )
-
-  // @LINE:22
-  private[this] lazy val controllers_WorkflowController_showScriptWorkflow9_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("script_workflow")))
-  )
-  private[this] lazy val controllers_WorkflowController_showScriptWorkflow9_invoker = createInvoker(
-    WorkflowController_6.showScriptWorkflow(),
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.WorkflowController",
-      "showScriptWorkflow",
-      Nil,
-      "GET",
-      this.prefix + """script_workflow""",
-      """""",
-      Seq()
-    )
-  )
-
-  // @LINE:23
-  private[this] lazy val controllers_WorkflowController_showTweetsWorkflow10_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("tweets_workflow")))
-  )
-  private[this] lazy val controllers_WorkflowController_showTweetsWorkflow10_invoker = createInvoker(
-    WorkflowController_6.showTweetsWorkflow(),
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.WorkflowController",
-      "showTweetsWorkflow",
-      Nil,
-      "GET",
-      this.prefix + """tweets_workflow""",
-      """""",
-      Seq()
-    )
-  )
-
   // @LINE:24
-  private[this] lazy val controllers_WorkflowController_showSpeechWorkflow11_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("speech_workflow")))
-  )
-  private[this] lazy val controllers_WorkflowController_showSpeechWorkflow11_invoker = createInvoker(
-    WorkflowController_6.showSpeechWorkflow(),
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.WorkflowController",
-      "showSpeechWorkflow",
-      Nil,
-      "GET",
-      this.prefix + """speech_workflow""",
-      """""",
-      Seq()
-    )
-  )
-
-  // @LINE:25
-  private[this] lazy val controllers_WorkflowController_showParallelWorkflow12_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("parallel_workflow")))
-  )
-  private[this] lazy val controllers_WorkflowController_showParallelWorkflow12_invoker = createInvoker(
-    WorkflowController_6.showParallelWorkflow(),
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.WorkflowController",
-      "showParallelWorkflow",
-      Nil,
-      "GET",
-      this.prefix + """parallel_workflow""",
-      """""",
-      Seq()
-    )
-  )
-
-  // @LINE:26
-  private[this] lazy val controllers_WorkflowController_showExplicitWorkflow13_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("explicit_workflow")))
-  )
-  private[this] lazy val controllers_WorkflowController_showExplicitWorkflow13_invoker = createInvoker(
-    WorkflowController_6.showExplicitWorkflow(),
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.WorkflowController",
-      "showExplicitWorkflow",
-      Nil,
-      "GET",
-      this.prefix + """explicit_workflow""",
-      """""",
-      Seq()
-    )
-  )
-
-  // @LINE:27
-  private[this] lazy val controllers_WorkflowController_showAudioTransWorkflow14_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("audiotrans_workflow")))
-  )
-  private[this] lazy val controllers_WorkflowController_showAudioTransWorkflow14_invoker = createInvoker(
-    WorkflowController_6.showAudioTransWorkflow(),
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.WorkflowController",
-      "showAudioTransWorkflow",
-      Nil,
-      "GET",
-      this.prefix + """audiotrans_workflow""",
-      """""",
-      Seq()
-    )
-  )
-
-  // @LINE:28
-  private[this] lazy val controllers_WorkflowController_showCompareTransWorkflow15_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("comparetrans_workflow")))
-  )
-  private[this] lazy val controllers_WorkflowController_showCompareTransWorkflow15_invoker = createInvoker(
-    WorkflowController_6.showCompareTransWorkflow(),
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.WorkflowController",
-      "showCompareTransWorkflow",
-      Nil,
-      "GET",
-      this.prefix + """comparetrans_workflow""",
-      """""",
-      Seq()
-    )
-  )
-
-  // @LINE:29
-  private[this] lazy val controllers_WorkflowController_showTrainModelWorkflow16_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("trainmodel_workflow")))
-  )
-  private[this] lazy val controllers_WorkflowController_showTrainModelWorkflow16_invoker = createInvoker(
-    WorkflowController_6.showTrainModelWorkflow(),
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.WorkflowController",
-      "showTrainModelWorkflow",
-      Nil,
-      "GET",
-      this.prefix + """trainmodel_workflow""",
-      """""",
-      Seq()
-    )
-  )
-
-  // @LINE:33
-  private[this] lazy val controllers_WorkflowController_runTask17_route = Route("POST",
+  private[this] lazy val controllers_WorkflowController_runTask8_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("workflow")))
   )
-  private[this] lazy val controllers_WorkflowController_runTask17_invoker = createInvoker(
+  private[this] lazy val controllers_WorkflowController_runTask8_invoker = createInvoker(
     WorkflowController_6.runTask(fakeValue[Integer]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -440,11 +271,11 @@ class Routes(
     )
   )
 
-  // @LINE:35
-  private[this] lazy val controllers_WorkflowController_downloadFile18_route = Route("GET",
+  // @LINE:26
+  private[this] lazy val controllers_WorkflowController_downloadFile9_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("download")))
   )
-  private[this] lazy val controllers_WorkflowController_downloadFile18_invoker = createInvoker(
+  private[this] lazy val controllers_WorkflowController_downloadFile9_invoker = createInvoker(
     WorkflowController_6.downloadFile(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -458,11 +289,11 @@ class Routes(
     )
   )
 
-  // @LINE:39
-  private[this] lazy val controllers_HomeController_show_generate_user19_route = Route("GET",
+  // @LINE:30
+  private[this] lazy val controllers_HomeController_show_generate_user10_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("generate_random_users")))
   )
-  private[this] lazy val controllers_HomeController_show_generate_user19_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_show_generate_user10_invoker = createInvoker(
     HomeController_1.show_generate_user(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -476,11 +307,11 @@ class Routes(
     )
   )
 
-  // @LINE:41
-  private[this] lazy val controllers_HomeController_generate_user20_route = Route("POST",
+  // @LINE:32
+  private[this] lazy val controllers_HomeController_generate_user11_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("generate_random_users")))
   )
-  private[this] lazy val controllers_HomeController_generate_user20_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_generate_user11_invoker = createInvoker(
     HomeController_1.generate_user(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -494,11 +325,11 @@ class Routes(
     )
   )
 
-  // @LINE:44
-  private[this] lazy val controllers_HomeController_show_job_management21_route = Route("GET",
+  // @LINE:35
+  private[this] lazy val controllers_HomeController_show_job_management12_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("job_management")))
   )
-  private[this] lazy val controllers_HomeController_show_job_management21_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_show_job_management12_invoker = createInvoker(
     HomeController_1.show_job_management(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -512,11 +343,11 @@ class Routes(
     )
   )
 
-  // @LINE:46
-  private[this] lazy val controllers_HomeController_job_management22_route = Route("POST",
+  // @LINE:37
+  private[this] lazy val controllers_HomeController_job_management13_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("job_management")))
   )
-  private[this] lazy val controllers_HomeController_job_management22_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_job_management13_invoker = createInvoker(
     HomeController_1.job_management(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -530,11 +361,11 @@ class Routes(
     )
   )
 
-  // @LINE:49
-  private[this] lazy val controllers_HomeController_show_submit_script23_route = Route("GET",
+  // @LINE:40
+  private[this] lazy val controllers_HomeController_show_submit_script14_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("submit_script")))
   )
-  private[this] lazy val controllers_HomeController_show_submit_script23_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_show_submit_script14_invoker = createInvoker(
     HomeController_1.show_submit_script(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -548,11 +379,11 @@ class Routes(
     )
   )
 
-  // @LINE:51
-  private[this] lazy val controllers_HomeController_submit_script24_route = Route("POST",
+  // @LINE:42
+  private[this] lazy val controllers_HomeController_submit_script15_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("submit_script")))
   )
-  private[this] lazy val controllers_HomeController_submit_script24_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_submit_script15_invoker = createInvoker(
     HomeController_1.submit_script(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -566,11 +397,11 @@ class Routes(
     )
   )
 
-  // @LINE:54
-  private[this] lazy val controllers_WorkflowController_submit_JSON25_route = Route("POST",
+  // @LINE:45
+  private[this] lazy val controllers_WorkflowController_submit_JSON16_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("submit_JSON")))
   )
-  private[this] lazy val controllers_WorkflowController_submit_JSON25_invoker = createInvoker(
+  private[this] lazy val controllers_WorkflowController_submit_JSON16_invoker = createInvoker(
     WorkflowController_6.submit_JSON(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -584,11 +415,11 @@ class Routes(
     )
   )
 
-  // @LINE:58
-  private[this] lazy val controllers_WorkflowController_generateTree26_route = Route("GET",
+  // @LINE:49
+  private[this] lazy val controllers_WorkflowController_generateTree17_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("directorytree")))
   )
-  private[this] lazy val controllers_WorkflowController_generateTree26_invoker = createInvoker(
+  private[this] lazy val controllers_WorkflowController_generateTree17_invoker = createInvoker(
     WorkflowController_6.generateTree(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -602,11 +433,11 @@ class Routes(
     )
   )
 
-  // @LINE:61
-  private[this] lazy val controllers_WorkflowController_generateTreeFromJSON27_route = Route("GET",
+  // @LINE:52
+  private[this] lazy val controllers_WorkflowController_generateTreeFromJSON18_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("directorytreeJSON")))
   )
-  private[this] lazy val controllers_WorkflowController_generateTreeFromJSON27_invoker = createInvoker(
+  private[this] lazy val controllers_WorkflowController_generateTreeFromJSON18_invoker = createInvoker(
     WorkflowController_6.generateTreeFromJSON(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -620,11 +451,11 @@ class Routes(
     )
   )
 
-  // @LINE:64
-  private[this] lazy val controllers_WorkflowController_refreshTree28_route = Route("GET",
+  // @LINE:55
+  private[this] lazy val controllers_WorkflowController_refreshTree19_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("directorytreeRefresh")))
   )
-  private[this] lazy val controllers_WorkflowController_refreshTree28_invoker = createInvoker(
+  private[this] lazy val controllers_WorkflowController_refreshTree19_invoker = createInvoker(
     WorkflowController_6.refreshTree(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -638,11 +469,11 @@ class Routes(
     )
   )
 
-  // @LINE:67
-  private[this] lazy val controllers_WorkflowController_download_workflow29_route = Route("GET",
+  // @LINE:58
+  private[this] lazy val controllers_WorkflowController_download_workflow20_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("downloadworkflow")))
   )
-  private[this] lazy val controllers_WorkflowController_download_workflow29_invoker = createInvoker(
+  private[this] lazy val controllers_WorkflowController_download_workflow20_invoker = createInvoker(
     WorkflowController_6.download_workflow(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -656,11 +487,47 @@ class Routes(
     )
   )
 
-  // @LINE:70
-  private[this] lazy val controllers_WorkflowController_save_workflow30_route = Route("GET",
+  // @LINE:61
+  private[this] lazy val controllers_WorkflowController_download_selected_workflow21_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("downloadselectedworkflow/"), DynamicPart("file", """.+""",false)))
+  )
+  private[this] lazy val controllers_WorkflowController_download_selected_workflow21_invoker = createInvoker(
+    WorkflowController_6.download_selected_workflow(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.WorkflowController",
+      "download_selected_workflow",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """downloadselectedworkflow/""" + "$" + """file<.+>""",
+      """ get jsonString of selected file""",
+      Seq()
+    )
+  )
+
+  // @LINE:64
+  private[this] lazy val controllers_WorkflowController_remove_selected_workflow22_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("removeworkflow/"), DynamicPart("file", """.+""",false)))
+  )
+  private[this] lazy val controllers_WorkflowController_remove_selected_workflow22_invoker = createInvoker(
+    WorkflowController_6.remove_selected_workflow(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.WorkflowController",
+      "remove_selected_workflow",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """removeworkflow/""" + "$" + """file<.+>""",
+      """ Remove selected workflow""",
+      Seq()
+    )
+  )
+
+  // @LINE:67
+  private[this] lazy val controllers_WorkflowController_save_workflow23_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("saveworkflow")))
   )
-  private[this] lazy val controllers_WorkflowController_save_workflow30_invoker = createInvoker(
+  private[this] lazy val controllers_WorkflowController_save_workflow23_invoker = createInvoker(
     WorkflowController_6.save_workflow(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -674,11 +541,11 @@ class Routes(
     )
   )
 
-  // @LINE:73
-  private[this] lazy val controllers_WorkflowController_getTaskDescription31_route = Route("GET",
+  // @LINE:70
+  private[this] lazy val controllers_WorkflowController_getTaskDescription24_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("description")))
   )
-  private[this] lazy val controllers_WorkflowController_getTaskDescription31_invoker = createInvoker(
+  private[this] lazy val controllers_WorkflowController_getTaskDescription24_invoker = createInvoker(
     WorkflowController_6.getTaskDescription(fakeValue[Integer]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -692,11 +559,11 @@ class Routes(
     )
   )
 
-  // @LINE:76
-  private[this] lazy val controllers_ApplicationController_signOut32_route = Route("GET",
+  // @LINE:73
+  private[this] lazy val controllers_ApplicationController_signOut25_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("signOut")))
   )
-  private[this] lazy val controllers_ApplicationController_signOut32_invoker = createInvoker(
+  private[this] lazy val controllers_ApplicationController_signOut25_invoker = createInvoker(
     ApplicationController_5.signOut,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -710,11 +577,11 @@ class Routes(
     )
   )
 
-  // @LINE:78
-  private[this] lazy val controllers_SignInController_view33_route = Route("GET",
+  // @LINE:75
+  private[this] lazy val controllers_SignInController_view26_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("signIn")))
   )
-  private[this] lazy val controllers_SignInController_view33_invoker = createInvoker(
+  private[this] lazy val controllers_SignInController_view26_invoker = createInvoker(
     SignInController_2.view,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -728,11 +595,11 @@ class Routes(
     )
   )
 
-  // @LINE:80
-  private[this] lazy val controllers_SignInController_submit34_route = Route("POST",
+  // @LINE:77
+  private[this] lazy val controllers_SignInController_submit27_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("signIn")))
   )
-  private[this] lazy val controllers_SignInController_submit34_invoker = createInvoker(
+  private[this] lazy val controllers_SignInController_submit27_invoker = createInvoker(
     SignInController_2.submit,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -746,11 +613,11 @@ class Routes(
     )
   )
 
-  // @LINE:82
-  private[this] lazy val controllers_SignInController_googleSubmit35_route = Route("POST",
+  // @LINE:79
+  private[this] lazy val controllers_SignInController_googleSubmit28_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("googleSignIn")))
   )
-  private[this] lazy val controllers_SignInController_googleSubmit35_invoker = createInvoker(
+  private[this] lazy val controllers_SignInController_googleSubmit28_invoker = createInvoker(
     SignInController_2.googleSubmit(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -764,11 +631,11 @@ class Routes(
     )
   )
 
-  // @LINE:84
-  private[this] lazy val controllers_RequestController_view36_route = Route("GET",
+  // @LINE:81
+  private[this] lazy val controllers_RequestController_view29_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("request")))
   )
-  private[this] lazy val controllers_RequestController_view36_invoker = createInvoker(
+  private[this] lazy val controllers_RequestController_view29_invoker = createInvoker(
     RequestController_3.view,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -782,11 +649,11 @@ class Routes(
     )
   )
 
-  // @LINE:86
-  private[this] lazy val controllers_RequestController_submit37_route = Route("POST",
+  // @LINE:83
+  private[this] lazy val controllers_RequestController_submit30_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("request")))
   )
-  private[this] lazy val controllers_RequestController_submit37_invoker = createInvoker(
+  private[this] lazy val controllers_RequestController_submit30_invoker = createInvoker(
     RequestController_3.submit,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -800,14 +667,14 @@ class Routes(
     )
   )
 
-  // @LINE:91
-  private[this] val prefixed_webjars_Routes_0_38 = Include(webjars_Routes_0.withPrefix(this.prefix + (if (this.prefix.endsWith("/")) "" else "/") + "webjars"))
+  // @LINE:88
+  private[this] val prefixed_webjars_Routes_0_31 = Include(webjars_Routes_0.withPrefix(this.prefix + (if (this.prefix.endsWith("/")) "" else "/") + "webjars"))
 
-  // @LINE:93
-  private[this] lazy val controllers_Assets_at39_route = Route("GET",
+  // @LINE:90
+  private[this] lazy val controllers_Assets_at32_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("images/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_at39_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_at32_invoker = createInvoker(
     Assets_4.at(fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -821,11 +688,11 @@ class Routes(
     )
   )
 
-  // @LINE:94
-  private[this] lazy val controllers_Assets_at40_route = Route("GET",
+  // @LINE:91
+  private[this] lazy val controllers_Assets_at33_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/stylesheets/DataTables-1.10.18/images/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_at40_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_at33_invoker = createInvoker(
     Assets_4.at(fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -839,11 +706,11 @@ class Routes(
     )
   )
 
-  // @LINE:95
-  private[this] lazy val controllers_WorkflowController_getAudio41_route = Route("GET",
+  // @LINE:92
+  private[this] lazy val controllers_WorkflowController_getAudio34_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("audio_data/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_WorkflowController_getAudio41_invoker = createInvoker(
+  private[this] lazy val controllers_WorkflowController_getAudio34_invoker = createInvoker(
     WorkflowController_6.getAudio(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -857,11 +724,11 @@ class Routes(
     )
   )
 
-  // @LINE:96
-  private[this] lazy val controllers_WorkflowController_getAudio42_route = Route("GET",
+  // @LINE:93
+  private[this] lazy val controllers_WorkflowController_getAudio35_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("audio_data/human_transcribed_audio/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_WorkflowController_getAudio42_invoker = createInvoker(
+  private[this] lazy val controllers_WorkflowController_getAudio35_invoker = createInvoker(
     WorkflowController_6.getAudio(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -875,11 +742,11 @@ class Routes(
     )
   )
 
-  // @LINE:97
-  private[this] lazy val controllers_WorkflowController_getAudio43_route = Route("GET",
+  // @LINE:94
+  private[this] lazy val controllers_WorkflowController_getAudio36_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("audio_data/all_three_transcribed/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_WorkflowController_getAudio43_invoker = createInvoker(
+  private[this] lazy val controllers_WorkflowController_getAudio36_invoker = createInvoker(
     WorkflowController_6.getAudio(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -893,11 +760,11 @@ class Routes(
     )
   )
 
-  // @LINE:100
-  private[this] lazy val controllers_GetDynamicFileController_getFile44_route = Route("GET",
+  // @LINE:97
+  private[this] lazy val controllers_GetDynamicFileController_getFile37_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("DynamicFiles/"), DynamicPart("name", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_GetDynamicFileController_getFile44_invoker = createInvoker(
+  private[this] lazy val controllers_GetDynamicFileController_getFile37_invoker = createInvoker(
     GetDynamicFileController_0.getFile(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -962,223 +829,181 @@ class Routes(
         controllers_WorkflowController_showWorkflowDynamically7_invoker.call(WorkflowController_6.showWorkflowDynamically(path))
       }
   
-    // @LINE:21
-    case controllers_WorkflowController_showFileWorkflow8_route(params@_) =>
-      call { 
-        controllers_WorkflowController_showFileWorkflow8_invoker.call(WorkflowController_6.showFileWorkflow())
-      }
-  
-    // @LINE:22
-    case controllers_WorkflowController_showScriptWorkflow9_route(params@_) =>
-      call { 
-        controllers_WorkflowController_showScriptWorkflow9_invoker.call(WorkflowController_6.showScriptWorkflow())
-      }
-  
-    // @LINE:23
-    case controllers_WorkflowController_showTweetsWorkflow10_route(params@_) =>
-      call { 
-        controllers_WorkflowController_showTweetsWorkflow10_invoker.call(WorkflowController_6.showTweetsWorkflow())
-      }
-  
     // @LINE:24
-    case controllers_WorkflowController_showSpeechWorkflow11_route(params@_) =>
-      call { 
-        controllers_WorkflowController_showSpeechWorkflow11_invoker.call(WorkflowController_6.showSpeechWorkflow())
-      }
-  
-    // @LINE:25
-    case controllers_WorkflowController_showParallelWorkflow12_route(params@_) =>
-      call { 
-        controllers_WorkflowController_showParallelWorkflow12_invoker.call(WorkflowController_6.showParallelWorkflow())
+    case controllers_WorkflowController_runTask8_route(params@_) =>
+      call(params.fromQuery[Integer]("index", None)) { (index) =>
+        controllers_WorkflowController_runTask8_invoker.call(WorkflowController_6.runTask(index))
       }
   
     // @LINE:26
-    case controllers_WorkflowController_showExplicitWorkflow13_route(params@_) =>
-      call { 
-        controllers_WorkflowController_showExplicitWorkflow13_invoker.call(WorkflowController_6.showExplicitWorkflow())
+    case controllers_WorkflowController_downloadFile9_route(params@_) =>
+      call(params.fromQuery[String]("path", None)) { (path) =>
+        controllers_WorkflowController_downloadFile9_invoker.call(WorkflowController_6.downloadFile(path))
       }
   
-    // @LINE:27
-    case controllers_WorkflowController_showAudioTransWorkflow14_route(params@_) =>
+    // @LINE:30
+    case controllers_HomeController_show_generate_user10_route(params@_) =>
       call { 
-        controllers_WorkflowController_showAudioTransWorkflow14_invoker.call(WorkflowController_6.showAudioTransWorkflow())
+        controllers_HomeController_show_generate_user10_invoker.call(HomeController_1.show_generate_user())
       }
   
-    // @LINE:28
-    case controllers_WorkflowController_showCompareTransWorkflow15_route(params@_) =>
+    // @LINE:32
+    case controllers_HomeController_generate_user11_route(params@_) =>
       call { 
-        controllers_WorkflowController_showCompareTransWorkflow15_invoker.call(WorkflowController_6.showCompareTransWorkflow())
-      }
-  
-    // @LINE:29
-    case controllers_WorkflowController_showTrainModelWorkflow16_route(params@_) =>
-      call { 
-        controllers_WorkflowController_showTrainModelWorkflow16_invoker.call(WorkflowController_6.showTrainModelWorkflow())
-      }
-  
-    // @LINE:33
-    case controllers_WorkflowController_runTask17_route(params@_) =>
-      call(params.fromQuery[Integer]("index", None)) { (index) =>
-        controllers_WorkflowController_runTask17_invoker.call(WorkflowController_6.runTask(index))
+        controllers_HomeController_generate_user11_invoker.call(HomeController_1.generate_user())
       }
   
     // @LINE:35
-    case controllers_WorkflowController_downloadFile18_route(params@_) =>
-      call(params.fromQuery[String]("path", None)) { (path) =>
-        controllers_WorkflowController_downloadFile18_invoker.call(WorkflowController_6.downloadFile(path))
+    case controllers_HomeController_show_job_management12_route(params@_) =>
+      call { 
+        controllers_HomeController_show_job_management12_invoker.call(HomeController_1.show_job_management())
       }
   
-    // @LINE:39
-    case controllers_HomeController_show_generate_user19_route(params@_) =>
+    // @LINE:37
+    case controllers_HomeController_job_management13_route(params@_) =>
       call { 
-        controllers_HomeController_show_generate_user19_invoker.call(HomeController_1.show_generate_user())
+        controllers_HomeController_job_management13_invoker.call(HomeController_1.job_management())
       }
   
-    // @LINE:41
-    case controllers_HomeController_generate_user20_route(params@_) =>
+    // @LINE:40
+    case controllers_HomeController_show_submit_script14_route(params@_) =>
       call { 
-        controllers_HomeController_generate_user20_invoker.call(HomeController_1.generate_user())
+        controllers_HomeController_show_submit_script14_invoker.call(HomeController_1.show_submit_script())
       }
   
-    // @LINE:44
-    case controllers_HomeController_show_job_management21_route(params@_) =>
+    // @LINE:42
+    case controllers_HomeController_submit_script15_route(params@_) =>
       call { 
-        controllers_HomeController_show_job_management21_invoker.call(HomeController_1.show_job_management())
+        controllers_HomeController_submit_script15_invoker.call(HomeController_1.submit_script())
       }
   
-    // @LINE:46
-    case controllers_HomeController_job_management22_route(params@_) =>
+    // @LINE:45
+    case controllers_WorkflowController_submit_JSON16_route(params@_) =>
       call { 
-        controllers_HomeController_job_management22_invoker.call(HomeController_1.job_management())
+        controllers_WorkflowController_submit_JSON16_invoker.call(WorkflowController_6.submit_JSON())
       }
   
     // @LINE:49
-    case controllers_HomeController_show_submit_script23_route(params@_) =>
-      call { 
-        controllers_HomeController_show_submit_script23_invoker.call(HomeController_1.show_submit_script())
+    case controllers_WorkflowController_generateTree17_route(params@_) =>
+      call(params.fromQuery[String]("rootPath", None)) { (rootPath) =>
+        controllers_WorkflowController_generateTree17_invoker.call(WorkflowController_6.generateTree(rootPath))
       }
   
-    // @LINE:51
-    case controllers_HomeController_submit_script24_route(params@_) =>
-      call { 
-        controllers_HomeController_submit_script24_invoker.call(HomeController_1.submit_script())
+    // @LINE:52
+    case controllers_WorkflowController_generateTreeFromJSON18_route(params@_) =>
+      call(params.fromQuery[String]("rootPath", None)) { (rootPath) =>
+        controllers_WorkflowController_generateTreeFromJSON18_invoker.call(WorkflowController_6.generateTreeFromJSON(rootPath))
       }
   
-    // @LINE:54
-    case controllers_WorkflowController_submit_JSON25_route(params@_) =>
-      call { 
-        controllers_WorkflowController_submit_JSON25_invoker.call(WorkflowController_6.submit_JSON())
+    // @LINE:55
+    case controllers_WorkflowController_refreshTree19_route(params@_) =>
+      call(params.fromQuery[String]("rootPath", None)) { (rootPath) =>
+        controllers_WorkflowController_refreshTree19_invoker.call(WorkflowController_6.refreshTree(rootPath))
       }
   
     // @LINE:58
-    case controllers_WorkflowController_generateTree26_route(params@_) =>
-      call(params.fromQuery[String]("rootPath", None)) { (rootPath) =>
-        controllers_WorkflowController_generateTree26_invoker.call(WorkflowController_6.generateTree(rootPath))
+    case controllers_WorkflowController_download_workflow20_route(params@_) =>
+      call { 
+        controllers_WorkflowController_download_workflow20_invoker.call(WorkflowController_6.download_workflow())
       }
   
     // @LINE:61
-    case controllers_WorkflowController_generateTreeFromJSON27_route(params@_) =>
-      call(params.fromQuery[String]("rootPath", None)) { (rootPath) =>
-        controllers_WorkflowController_generateTreeFromJSON27_invoker.call(WorkflowController_6.generateTreeFromJSON(rootPath))
+    case controllers_WorkflowController_download_selected_workflow21_route(params@_) =>
+      call(params.fromPath[String]("file", None)) { (file) =>
+        controllers_WorkflowController_download_selected_workflow21_invoker.call(WorkflowController_6.download_selected_workflow(file))
       }
   
     // @LINE:64
-    case controllers_WorkflowController_refreshTree28_route(params@_) =>
-      call(params.fromQuery[String]("rootPath", None)) { (rootPath) =>
-        controllers_WorkflowController_refreshTree28_invoker.call(WorkflowController_6.refreshTree(rootPath))
+    case controllers_WorkflowController_remove_selected_workflow22_route(params@_) =>
+      call(params.fromPath[String]("file", None)) { (file) =>
+        controllers_WorkflowController_remove_selected_workflow22_invoker.call(WorkflowController_6.remove_selected_workflow(file))
       }
   
     // @LINE:67
-    case controllers_WorkflowController_download_workflow29_route(params@_) =>
+    case controllers_WorkflowController_save_workflow23_route(params@_) =>
       call { 
-        controllers_WorkflowController_download_workflow29_invoker.call(WorkflowController_6.download_workflow())
+        controllers_WorkflowController_save_workflow23_invoker.call(WorkflowController_6.save_workflow())
       }
   
     // @LINE:70
-    case controllers_WorkflowController_save_workflow30_route(params@_) =>
-      call { 
-        controllers_WorkflowController_save_workflow30_invoker.call(WorkflowController_6.save_workflow())
+    case controllers_WorkflowController_getTaskDescription24_route(params@_) =>
+      call(params.fromQuery[Integer]("index", None)) { (index) =>
+        controllers_WorkflowController_getTaskDescription24_invoker.call(WorkflowController_6.getTaskDescription(index))
       }
   
     // @LINE:73
-    case controllers_WorkflowController_getTaskDescription31_route(params@_) =>
-      call(params.fromQuery[Integer]("index", None)) { (index) =>
-        controllers_WorkflowController_getTaskDescription31_invoker.call(WorkflowController_6.getTaskDescription(index))
-      }
-  
-    // @LINE:76
-    case controllers_ApplicationController_signOut32_route(params@_) =>
+    case controllers_ApplicationController_signOut25_route(params@_) =>
       call { 
-        controllers_ApplicationController_signOut32_invoker.call(ApplicationController_5.signOut)
+        controllers_ApplicationController_signOut25_invoker.call(ApplicationController_5.signOut)
       }
   
-    // @LINE:78
-    case controllers_SignInController_view33_route(params@_) =>
+    // @LINE:75
+    case controllers_SignInController_view26_route(params@_) =>
       call { 
-        controllers_SignInController_view33_invoker.call(SignInController_2.view)
+        controllers_SignInController_view26_invoker.call(SignInController_2.view)
       }
   
-    // @LINE:80
-    case controllers_SignInController_submit34_route(params@_) =>
+    // @LINE:77
+    case controllers_SignInController_submit27_route(params@_) =>
       call { 
-        controllers_SignInController_submit34_invoker.call(SignInController_2.submit)
+        controllers_SignInController_submit27_invoker.call(SignInController_2.submit)
       }
   
-    // @LINE:82
-    case controllers_SignInController_googleSubmit35_route(params@_) =>
+    // @LINE:79
+    case controllers_SignInController_googleSubmit28_route(params@_) =>
       call(params.fromQuery[String]("idTokenString", None)) { (idTokenString) =>
-        controllers_SignInController_googleSubmit35_invoker.call(SignInController_2.googleSubmit(idTokenString))
+        controllers_SignInController_googleSubmit28_invoker.call(SignInController_2.googleSubmit(idTokenString))
       }
   
-    // @LINE:84
-    case controllers_RequestController_view36_route(params@_) =>
+    // @LINE:81
+    case controllers_RequestController_view29_route(params@_) =>
       call { 
-        controllers_RequestController_view36_invoker.call(RequestController_3.view)
+        controllers_RequestController_view29_invoker.call(RequestController_3.view)
       }
   
-    // @LINE:86
-    case controllers_RequestController_submit37_route(params@_) =>
+    // @LINE:83
+    case controllers_RequestController_submit30_route(params@_) =>
       call { 
-        controllers_RequestController_submit37_invoker.call(RequestController_3.submit)
+        controllers_RequestController_submit30_invoker.call(RequestController_3.submit)
+      }
+  
+    // @LINE:88
+    case prefixed_webjars_Routes_0_31(handler) => handler
+  
+    // @LINE:90
+    case controllers_Assets_at32_route(params@_) =>
+      call(Param[String]("path", Right("/public/images")), params.fromPath[String]("file", None)) { (path, file) =>
+        controllers_Assets_at32_invoker.call(Assets_4.at(path, file))
       }
   
     // @LINE:91
-    case prefixed_webjars_Routes_0_38(handler) => handler
+    case controllers_Assets_at33_route(params@_) =>
+      call(Param[String]("path", Right("/public/images")), params.fromPath[String]("file", None)) { (path, file) =>
+        controllers_Assets_at33_invoker.call(Assets_4.at(path, file))
+      }
+  
+    // @LINE:92
+    case controllers_WorkflowController_getAudio34_route(params@_) =>
+      call(params.fromPath[String]("file", None)) { (file) =>
+        controllers_WorkflowController_getAudio34_invoker.call(WorkflowController_6.getAudio(file))
+      }
   
     // @LINE:93
-    case controllers_Assets_at39_route(params@_) =>
-      call(Param[String]("path", Right("/public/images")), params.fromPath[String]("file", None)) { (path, file) =>
-        controllers_Assets_at39_invoker.call(Assets_4.at(path, file))
+    case controllers_WorkflowController_getAudio35_route(params@_) =>
+      call(params.fromPath[String]("file", None)) { (file) =>
+        controllers_WorkflowController_getAudio35_invoker.call(WorkflowController_6.getAudio(file))
       }
   
     // @LINE:94
-    case controllers_Assets_at40_route(params@_) =>
-      call(Param[String]("path", Right("/public/images")), params.fromPath[String]("file", None)) { (path, file) =>
-        controllers_Assets_at40_invoker.call(Assets_4.at(path, file))
-      }
-  
-    // @LINE:95
-    case controllers_WorkflowController_getAudio41_route(params@_) =>
+    case controllers_WorkflowController_getAudio36_route(params@_) =>
       call(params.fromPath[String]("file", None)) { (file) =>
-        controllers_WorkflowController_getAudio41_invoker.call(WorkflowController_6.getAudio(file))
-      }
-  
-    // @LINE:96
-    case controllers_WorkflowController_getAudio42_route(params@_) =>
-      call(params.fromPath[String]("file", None)) { (file) =>
-        controllers_WorkflowController_getAudio42_invoker.call(WorkflowController_6.getAudio(file))
+        controllers_WorkflowController_getAudio36_invoker.call(WorkflowController_6.getAudio(file))
       }
   
     // @LINE:97
-    case controllers_WorkflowController_getAudio43_route(params@_) =>
-      call(params.fromPath[String]("file", None)) { (file) =>
-        controllers_WorkflowController_getAudio43_invoker.call(WorkflowController_6.getAudio(file))
-      }
-  
-    // @LINE:100
-    case controllers_GetDynamicFileController_getFile44_route(params@_) =>
+    case controllers_GetDynamicFileController_getFile37_route(params@_) =>
       call(params.fromPath[String]("name", None)) { (name) =>
-        controllers_GetDynamicFileController_getFile44_invoker.call(GetDynamicFileController_0.getFile(name))
+        controllers_GetDynamicFileController_getFile37_invoker.call(GetDynamicFileController_0.getFile(name))
       }
   }
 }
