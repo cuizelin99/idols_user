@@ -111,6 +111,7 @@ class WorkflowController @Inject() (
 
   /**
    * An Action to render the Workflow page.
+   * @param path: the path to the json file whose workflow is to be shown
    */
   def showWorkflowDynamically(path: String) = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
     generate_workflow(path, request.identity)
@@ -141,6 +142,7 @@ class WorkflowController @Inject() (
 
   /**
    * Download selected workflow as a json file
+   * @param fileName: the path to the workflow json file to be downloaded
    */
   def download_selected_workflow(fileName: String) = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
     workflow.reset()
@@ -151,6 +153,7 @@ class WorkflowController @Inject() (
 
   /**
    * Remove selected workflow as a json file
+   * @param fileName: the path to the workflow json file to be removed
    */
   def remove_selected_workflow(fileName: String) = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
     if (os.exists(os.Path(fileName)))
@@ -212,6 +215,10 @@ class WorkflowController @Inject() (
     }
   }
 
+  /**
+   * Refresh directory tree from given JSON file
+   * @param rootPath: the path of the JSON file which can be expressed as a directory
+   */
   def refreshTree(rootPath: String) = silhouette.SecuredAction.async {
     val root = Paths.get(rootPath)
     if (!root.isAbsolute()) {
@@ -248,6 +255,10 @@ class WorkflowController @Inject() (
     }
   }
 
+  /**
+   * Generate directory tree from given JSON file
+   * @param rootPath: the path of the JSON file which can be expressed as a directory
+   */
   def generateTreeFromJSON(rootPath: String) = silhouette.SecuredAction.async {
     var tree_json = Source.fromFile(rootPath).getLines().mkString
     println("GenerateTree Js String:: " + tree_json);
@@ -256,6 +267,10 @@ class WorkflowController @Inject() (
     Future.successful(Ok(tree_js))
   }
 
+  /**
+   * Download the file given by path
+   * @param path: the path of the file to be downloaded
+   */
   def downloadFile(path: String) = silhouette.SecuredAction.async {
     Future.successful(Ok.sendFile(new java.io.File(path)))
   }
@@ -311,6 +326,10 @@ class WorkflowController @Inject() (
   }
 
   var submitted = false
+  
+  /**
+   * Submit the newly edited JSON file to the VM
+   */
   def submit_JSON() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
     if (submitted) {
       Future.successful(Ok("Already submitted, please wait for it to finish"))
