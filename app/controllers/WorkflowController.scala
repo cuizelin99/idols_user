@@ -33,7 +33,9 @@ import ExecutionContext.Implicits.global
 import scala.sys.process._
 import play.api.routing._
 
-@Singleton
+@Singleton /**
+ * The `Workflow` controller. This controller creates and manages `Workflow` objects.
+ */
 class WorkflowController @Inject() (
   components: ControllerComponents,
   silhouette: Silhouette[DefaultEnv], configuration: play.api.Configuration)(
@@ -58,12 +60,17 @@ class WorkflowController @Inject() (
 
   /**
    * An Action to render the Workflow page.
+   * Shows the workflow defined by the variable workflow_json as a webpage
    */
   def showWorkflow() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
     generate_workflow(workflow_json, request.identity)
     Future.successful(Ok(views.html.workflow.workflow(request.identity, workflow.head, tasks.toArray)))
   }
 
+  /**
+   * Get an audio file from a specific path
+   * @param name: the path of the audio file
+   */
   def getAudio(name: String) = Action {
     println("get file: " + name + " at Path: " + audio_directory)
     Ok.sendFile(new File(audio_directory + name.replace("%20", " ")))
@@ -110,7 +117,8 @@ class WorkflowController @Inject() (
   }
 
   /**
-   * An Action to render the Workflow page.
+   * An Action to render the Workflow page dynamically.
+   * Shows the workflows under the directory public/workflows/saved_workflows
    * @param path: the path to the json file whose workflow is to be shown
    */
   def showWorkflowDynamically(path: String) = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
@@ -119,7 +127,7 @@ class WorkflowController @Inject() (
   }
 
   /**
-   * Save current workflow as a json file in public directory
+   * Save current workflow as a json file in public directory public/workflows/saved_workflows
    */
   def save_workflow() = silhouette.SecuredAction.async {
     println(Json.prettyPrint(workflow.export_JSON()))
@@ -134,6 +142,7 @@ class WorkflowController @Inject() (
 
   /**
    * Download current workflow as a json file
+   * Shows the current workflow as a JSON file on the frontend so that user can download it manually
    */
   def download_workflow() = silhouette.SecuredAction.async {
     println(Json.prettyPrint(workflow.export_JSON()))
@@ -142,6 +151,7 @@ class WorkflowController @Inject() (
 
   /**
    * Download selected workflow as a json file
+   * Shows the selected workflow as a JSON file on the frontend so that user can download it manually
    * @param fileName: the path to the workflow json file to be downloaded
    */
   def download_selected_workflow(fileName: String) = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
@@ -152,7 +162,8 @@ class WorkflowController @Inject() (
   }
 
   /**
-   * Remove selected workflow as a json file
+   * Remove selected workflow as a json file from public/workflows/saved_workflows
+   * This workflow will disappear from use_cases webpage
    * @param fileName: the path to the workflow json file to be removed
    */
   def remove_selected_workflow(fileName: String) = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
@@ -178,6 +189,7 @@ class WorkflowController @Inject() (
   /**
    * Generate directory tree - create a new tree when none of the existing
    * tree matches the one we want
+   * This method creates a directory tree at the directory given by the parameter rootPath
    * @param rootPath:  path to the root of the directory tree
    * @return the String representation of the directory tree as JsValue
    */
@@ -257,6 +269,8 @@ class WorkflowController @Inject() (
 
   /**
    * Generate directory tree from given JSON file
+   * This method is used to support the functionality of using a JSON file to represent a directory
+   * Users can define file structure in their JSON file
    * @param rootPath: the path of the JSON file which can be expressed as a directory
    */
   def generateTreeFromJSON(rootPath: String) = silhouette.SecuredAction.async {
@@ -268,7 +282,7 @@ class WorkflowController @Inject() (
   }
 
   /**
-   * Download the file given by path
+   * Download the file given by path. Sends the file to the frontend so that user can download it manually
    * @param path: the path of the file to be downloaded
    */
   def downloadFile(path: String) = silhouette.SecuredAction.async {
@@ -276,7 +290,8 @@ class WorkflowController @Inject() (
   }
 
   /**
-   * Run the task
+   * Run a task in the task array, indexed with the parameter index
+   * Calls the run() method of the task. Each type of task should have its own run() method
    * @param index: the index of the task in our array of tasks
    * @return the feed back from running the task
    */
@@ -326,9 +341,10 @@ class WorkflowController @Inject() (
   }
 
   var submitted = false
-  
+
   /**
    * Submit the newly edited JSON file to the VM
+   * This method is used for updating and saving a JSON table in showResultTask
    */
   def submit_JSON() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
     if (submitted) {

@@ -13,10 +13,11 @@
 	}
 	</div>
 	
+	<div class="text" border:3px solid;margin-top: 20px;"><a href="@controllers.routes.WorkflowController.showWorkflow()">Use Case: Set Up Workflow</a></div>
 	
 	<div style="border:3px solid;margin-top: 20px;">
 		<p style="font-size:24px;margin-left: 16px;"> The following use cases are from public/workflows/saved_workflows </p>
-	<div class="text"><a href="@controllers.routes.WorkflowController.showWorkflow()">Use Case: Set Up Workflow</a></div>
+	
 	@for(index <- 0 until head_list.length) {
 		<div style="text-align: left;">
 	    	<p class="text" id="usecase@index" style="text-align: left;"><a href="@controllers.routes.WorkflowController.showWorkflowDynamically(json_files(index))">@head_list(index)</a></p>

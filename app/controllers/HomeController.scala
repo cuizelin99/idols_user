@@ -81,14 +81,15 @@ class HomeController @Inject() (
   utils.AutoSignUp.save_user(userService, authTokenService, avatarService, credentialsProvider, authInfoRepository, passwordHasherRegistry, Json.parse(Source.fromFile(configuration.underlying.getString("users")).getLines().mkString))
 
   /**
-   * home page - an introduction to idols
+   * Renders the home page - an introduction to idols
    */
   def home() = silhouette.UserAwareAction.async { implicit request: Request[AnyContent] =>
     Future.successful(Ok(views.html.idols_home()))
   }
 
   /**
-   * use cases page
+   * Renders the use cases page. Shows the workflows that can be used by the admin and the workflows under the
+   * public directory public/workflows/saved_workflows
    */
   def use_cases() = silhouette.SecuredAction.async { implicit request: SecuredRequest[DefaultEnv, AnyContent] =>
     val cases = Source.fromFile(configuration.underlying.getString("use.cases")).getLines().mkString
@@ -109,7 +110,7 @@ class HomeController @Inject() (
   }
 
   /**
-   * contact page
+   * Renders the contact page
    */
   def contact() = silhouette.UserAwareAction.async { implicit request: Request[AnyContent] =>
     Future.successful(Ok(views.html.contact()))

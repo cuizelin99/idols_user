@@ -38,36 +38,37 @@ Seq[Any](format.raw/*1.94*/("""
 	""")))}),format.raw/*13.3*/("""
 	"""),format.raw/*14.2*/("""</div>
 	
+	<div class="text" border:3px solid;margin-top: 20px;"><a href=""""),_display_(/*16.66*/controllers/*16.77*/.routes.WorkflowController.showWorkflow()),format.raw/*16.118*/("""">Use Case: Set Up Workflow</a></div>
 	
 	<div style="border:3px solid;margin-top: 20px;">
 		<p style="font-size:24px;margin-left: 16px;"> The following use cases are from public/workflows/saved_workflows </p>
-	<div class="text"><a href=""""),_display_(/*19.30*/controllers/*19.41*/.routes.WorkflowController.showWorkflow()),format.raw/*19.82*/("""">Use Case: Set Up Workflow</a></div>
-	"""),_display_(/*20.3*/for(index <- 0 until head_list.length) yield /*20.41*/ {_display_(Seq[Any](format.raw/*20.43*/("""
-		"""),format.raw/*21.3*/("""<div style="text-align: left;">
-	    	<p class="text" id="usecase"""),_display_(/*22.35*/index),format.raw/*22.40*/("""" style="text-align: left;"><a href=""""),_display_(/*22.78*/controllers/*22.89*/.routes.WorkflowController.showWorkflowDynamically(json_files(index))),format.raw/*22.158*/("""">"""),_display_(/*22.161*/head_list(index)),format.raw/*22.177*/("""</a></p>
-	    	<button type="button" id="download_workflow"""),_display_(/*23.51*/index),format.raw/*23.56*/("""" style="margin-left: 16px;">Download</button>
-	    <button type="button" id="remove_workflow"""),_display_(/*24.48*/index),format.raw/*24.53*/("""">Remove</button>	
+	
+	"""),_display_(/*21.3*/for(index <- 0 until head_list.length) yield /*21.41*/ {_display_(Seq[Any](format.raw/*21.43*/("""
+		"""),format.raw/*22.3*/("""<div style="text-align: left;">
+	    	<p class="text" id="usecase"""),_display_(/*23.35*/index),format.raw/*23.40*/("""" style="text-align: left;"><a href=""""),_display_(/*23.78*/controllers/*23.89*/.routes.WorkflowController.showWorkflowDynamically(json_files(index))),format.raw/*23.158*/("""">"""),_display_(/*23.161*/head_list(index)),format.raw/*23.177*/("""</a></p>
+	    	<button type="button" id="download_workflow"""),_display_(/*24.51*/index),format.raw/*24.56*/("""" style="margin-left: 16px;">Download</button>
+	    <button type="button" id="remove_workflow"""),_display_(/*25.48*/index),format.raw/*25.53*/("""">Remove</button>	
 	    </div>
-	""")))}),format.raw/*26.3*/("""
-	"""),format.raw/*27.2*/("""</div>
+	""")))}),format.raw/*27.3*/("""
+	"""),format.raw/*28.2*/("""</div>
 	
 	
 	
 
 
-""")))}),format.raw/*33.2*/("""
+""")))}),format.raw/*34.2*/("""
 
 
-"""),format.raw/*36.1*/("""<script>
-	"""),_display_(/*37.3*/for(index <- 0 until head_list.length) yield /*37.41*/{_display_(Seq[Any](format.raw/*37.42*/("""
-	"""),format.raw/*38.2*/("""document.getElementById("download_workflow"""),_display_(/*38.45*/index),format.raw/*38.50*/("""").onclick = function () """),format.raw/*38.75*/("""{"""),format.raw/*38.76*/("""
-		"""),format.raw/*39.3*/("""location.href = "/downloadselectedworkflow/"""),_display_(/*39.47*/json_files(index)),format.raw/*39.64*/("""";
-	"""),format.raw/*40.2*/("""}"""),format.raw/*40.3*/(""";
-	document.getElementById("remove_workflow"""),_display_(/*41.43*/index),format.raw/*41.48*/("""").onclick = function () """),format.raw/*41.73*/("""{"""),format.raw/*41.74*/("""
-		"""),format.raw/*42.3*/("""location.href = "/removeworkflow/"""),_display_(/*42.37*/json_files(index)),format.raw/*42.54*/("""";
-	"""),format.raw/*43.2*/("""}"""),format.raw/*43.3*/(""";
-	""")))}),format.raw/*44.3*/("""
-"""),format.raw/*45.1*/("""</script>"""))
+"""),format.raw/*37.1*/("""<script>
+	"""),_display_(/*38.3*/for(index <- 0 until head_list.length) yield /*38.41*/{_display_(Seq[Any](format.raw/*38.42*/("""
+	"""),format.raw/*39.2*/("""document.getElementById("download_workflow"""),_display_(/*39.45*/index),format.raw/*39.50*/("""").onclick = function () """),format.raw/*39.75*/("""{"""),format.raw/*39.76*/("""
+		"""),format.raw/*40.3*/("""location.href = "/downloadselectedworkflow/"""),_display_(/*40.47*/json_files(index)),format.raw/*40.64*/("""";
+	"""),format.raw/*41.2*/("""}"""),format.raw/*41.3*/(""";
+	document.getElementById("remove_workflow"""),_display_(/*42.43*/index),format.raw/*42.48*/("""").onclick = function () """),format.raw/*42.73*/("""{"""),format.raw/*42.74*/("""
+		"""),format.raw/*43.3*/("""location.href = "/removeworkflow/"""),_display_(/*43.37*/json_files(index)),format.raw/*43.54*/("""";
+	"""),format.raw/*44.2*/("""}"""),format.raw/*44.3*/(""";
+	""")))}),format.raw/*45.3*/("""
+"""),format.raw/*46.1*/("""</script>"""))
       }
     }
   }
@@ -83,11 +84,11 @@ Seq[Any](format.raw/*1.94*/("""
 
               /*
                   -- GENERATED --
-                  DATE: Tue May 04 15:39:52 CDT 2021
+                  DATE: Wed May 12 15:52:45 CDT 2021
                   SOURCE: /Users/petercui/workspace/idols/idols_user/app/views/use_cases.scala.html
-                  HASH: 24f7e48d16051b21e8e90426e0082d5ef84088c9
-                  MATRIX: 778->1|965->93|993->96|1036->131|1075->133|1105->137|1183->190|1235->234|1274->236|1303->239|1427->337|1446->348|1509->391|1610->465|1630->476|1695->520|1791->589|1811->600|1875->643|1946->684|1975->686|2211->895|2231->906|2293->947|2359->987|2413->1025|2453->1027|2483->1030|2576->1096|2602->1101|2667->1139|2687->1150|2778->1219|2809->1222|2847->1238|2933->1297|2959->1302|3080->1396|3106->1401|3169->1434|3198->1436|3244->1452|3274->1455|3311->1466|3365->1504|3404->1505|3433->1507|3503->1550|3529->1555|3582->1580|3611->1581|3641->1584|3712->1628|3750->1645|3781->1649|3809->1650|3880->1694|3906->1699|3959->1724|3988->1725|4018->1728|4079->1762|4117->1779|4148->1783|4176->1784|4210->1788|4238->1789
-                  LINES: 21->1|26->1|28->3|28->3|28->3|30->5|32->7|32->7|32->7|33->8|34->9|34->9|34->9|35->10|35->10|35->10|36->11|36->11|36->11|38->13|39->14|44->19|44->19|44->19|45->20|45->20|45->20|46->21|47->22|47->22|47->22|47->22|47->22|47->22|47->22|48->23|48->23|49->24|49->24|51->26|52->27|58->33|61->36|62->37|62->37|62->37|63->38|63->38|63->38|63->38|63->38|64->39|64->39|64->39|65->40|65->40|66->41|66->41|66->41|66->41|67->42|67->42|67->42|68->43|68->43|69->44|70->45
+                  HASH: 74838326634c0cc32f5e6d97711720c00a37da8a
+                  MATRIX: 778->1|965->93|993->96|1036->131|1075->133|1105->137|1183->190|1235->234|1274->236|1303->239|1427->337|1446->348|1509->391|1610->465|1630->476|1695->520|1791->589|1811->600|1875->643|1946->684|1975->686|2076->760|2096->771|2159->812|2398->1025|2452->1063|2492->1065|2522->1068|2615->1134|2641->1139|2706->1177|2726->1188|2817->1257|2848->1260|2886->1276|2972->1335|2998->1340|3119->1434|3145->1439|3208->1472|3237->1474|3283->1490|3313->1493|3350->1504|3404->1542|3443->1543|3472->1545|3542->1588|3568->1593|3621->1618|3650->1619|3680->1622|3751->1666|3789->1683|3820->1687|3848->1688|3919->1732|3945->1737|3998->1762|4027->1763|4057->1766|4118->1800|4156->1817|4187->1821|4215->1822|4249->1826|4277->1827
+                  LINES: 21->1|26->1|28->3|28->3|28->3|30->5|32->7|32->7|32->7|33->8|34->9|34->9|34->9|35->10|35->10|35->10|36->11|36->11|36->11|38->13|39->14|41->16|41->16|41->16|46->21|46->21|46->21|47->22|48->23|48->23|48->23|48->23|48->23|48->23|48->23|49->24|49->24|50->25|50->25|52->27|53->28|59->34|62->37|63->38|63->38|63->38|64->39|64->39|64->39|64->39|64->39|65->40|65->40|65->40|66->41|66->41|67->42|67->42|67->42|67->42|68->43|68->43|68->43|69->44|69->44|70->45|71->46
                   -- GENERATED --
               */
           

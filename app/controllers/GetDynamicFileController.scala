@@ -7,7 +7,9 @@ import java.io._
 import javax.imageio.ImageIO
 import scala.concurrent.ExecutionContext;
 
-@Singleton
+@Singleton /**
+ * The `Dynamic File` controller. This controller gets files dynamically from ./public/DynamicFiles/
+ */
 class GetDynamicFileController @Inject() (cc: ControllerComponents)(implicit ec: ExecutionContext)
   extends AbstractController(cc) {
 
