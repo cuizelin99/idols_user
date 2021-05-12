@@ -55,6 +55,8 @@ libraryDependencies ++= Seq(
   "com.mohiva" %% "play-silhouette-testkit" % "5.0.0" % "test",
   "com.github.rjeschke" % "txtmark" % "0.13",
   "com.google.api-client" % "google-api-client-java6" % "1.28.0",
+  "jakarta.xml.bind" % "jakarta.xml.bind-api" % "2.3.2",
+  "org.glassfish.jaxb" % "jaxb-runtime" % "2.3.2",
   specs2 % Test,
   ehcache,
   guice,
