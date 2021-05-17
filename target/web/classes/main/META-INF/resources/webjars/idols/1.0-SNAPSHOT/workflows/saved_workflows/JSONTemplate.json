@@ -1,0 +1,15 @@
+{
+  "head" : "JSON Template",
+  "description" : "test",
+  "tasks" : [ {
+    "task_name" : "Explore and Select Audio File",
+    "task_type" : "showJSONTask",
+    "task_description" : {
+      "format" : "text",
+      "content" : "Select an audio file to process. You can listen to the audio and download it. For this demo we are using a sample of audio files from the StoryCorps collection Historias. For more information about this collection see: https://storycorps.org/discover/historias/. These files are available thanks to the Benson Latin American Collection at The University of Texas at Austin. ",
+      "file" : ""
+    },
+    "access_level" : "User",
+    "file_path" : "/Users/petercui/Downloads/jsonfiles_new/MBY005779_mono_16khz.WAV.txt.json"
+  }]
+}

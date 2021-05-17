@@ -4,7 +4,7 @@
 		module="idols_2.12"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20210502171154"
+		publication="20210516194854"
 	>
 		<description>
 		idols
@@ -70,6 +70,8 @@
 		<dependency org="com.mohiva" name="play-silhouette-testkit_2.12" rev="5.0.0" conf="test->default(compile)"/>
 		<dependency org="com.github.rjeschke" name="txtmark" rev="0.13" conf="compile->default(compile)"/>
 		<dependency org="com.google.api-client" name="google-api-client-java6" rev="1.28.0" conf="compile->default(compile)"/>
+		<dependency org="jakarta.xml.bind" name="jakarta.xml.bind-api" rev="2.3.2" conf="compile->default(compile)"/>
+		<dependency org="org.glassfish.jaxb" name="jaxb-runtime" rev="2.3.2" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.play" name="play-specs2_2.12" rev="2.6.7" conf="test->default(compile)"/>
 		<dependency org="com.typesafe.play" name="play-ehcache_2.12" rev="2.6.7" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.play" name="play-guice_2.12" rev="2.6.7" conf="compile->default(compile)"/>

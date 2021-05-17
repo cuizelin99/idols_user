@@ -1,0 +1,260 @@
+@(task: models.tasks.showJSONTask, index: Integer)
+  
+    @helper.form(action = controllers.routes.WorkflowController.runTask(index), 'id -> "form".concat(index.toString))  {
+   	    	
+	    <ul style="list-style:none">
+	    		
+	    		<div id="directory_widget@index" style="display:inline">
+					    	
+			<li>
+	    			<div class="indivsteps">
+					Define root directory to start exploring
+				</div>
+				<p>
+	    				<input type="text" id="root@index" name="root" value="@task.output_path" style="width: 400px" > <button type="button" value="directory@task.task_name" onclick="openTree('@index', document.getElementById('root' + @index).value)">View</button> <button type="button" value="directory@task.task_name" onclick="openTreeRefresh('@index', document.getElementById('root' + @index).value)">Refresh</button>
+	    			</p>
+	   		</li>
+    
+	   	 	<li>
+		    		<div class="indivsteps">
+					File Path
+				</div>
+		    		<p>
+			    		<input name="output_path" id="directory@index" type="text" value="@task.output_path" style="width: 400px" readonly>
+			    		<div class="dirTree" id="container@index"></div>
+		    		</p>
+		    		<p>
+		    			<button type="button" id="back@index" onclick="openTree(@index, document.getElementById('directory'+ @index).value.substring(0, document.getElementById('directory' + @index).value.lastIndexOf('/')))" style="display: none;">Go to parent directory</button> <button type="button" id="forward@index" onclick="openTree('@index', document.getElementById('directory' + @index).value)" style="display: none;">Expand chosen directory</button> 
+		    		</p>
+	    		</li>
+	    		</div>
+	    		
+	    		
+	    		<div id="JSON_widget@index" style="display:none">
+	    				<p>
+					    	<button type="submit" id="show_JSON@index" name="action" value="show_JSON">Show</button>
+			        </p> 
+	    		</div>
+	    		
+	    		
+	    		<div id = "init@index" style = "display:none"></div>   
+	    		
+	    		<div class="status" id="status@index"></div>
+		</ul>	
+		
+    
+	    <script>
+	    document.getElementById('init' + @index).innerHTML = show_display();
+	   
+	    
+	    function showJSON(path, idx){
+	    		console.log(path);
+	    		$.getJSON(path, function(data){
+	    		var 	json_data = '';
+	    		$.each(data, function(key, value){
+	    			json_data += '<tr>';
+	    			json_data += '<td>' + value.label + '</td>';
+	    			json_data += '</tr>';
+	    		});
+	    		document.getElementById('json_table'+ idx).appendChild(json_data);
+	    		document.getElementById('json_table'+ idx).style = "display:inline";
+	    	});
+	    }
+	    
+	    function download(path) {
+	    		console.log(path);
+	    	    window.open("/download?path=" + path);
+	    }
+	    
+	    function  show_display(){
+	    			document.getElementById('JSON_widget' + @index).style = "display:inline";
+	    }
+	    
+	   
+	    
+		    $('#form@index')
+		    .ajaxForm({
+		    
+		        url : '@controllers.routes.WorkflowController.runTask(index)',		        
+		        type : 'post',
+		    	
+		    		beforeSubmit: function(arr, $form, options){
+		    				        		        console.log("before sub")
+		    		
+						
+						return true;					
+		   	 	},
+		   	 	
+		        success : function (response) {
+		        		
+	           		console.log("RESPONSE::" + response)
+	           		var b = response.substring(10)
+	           		console.log("B::" + b)
+	           		js2JTable(JSON.parse(b))
+	           		document.getElementById('status' + @index).style = "display:inline";
+	           	 	document.getElementById('status' + @index).className = "status_success";
+		           
+		        },
+		        error : function (xhr, status, error) {
+		        		        console.log("error")
+		        
+		        	   document.getElementById('status' + @index).style = "display:inline";
+		           document.getElementById('status' + @index).className = "status_error";
+		           document.getElementById('status' + @index).innerHTML = xhr.responseText;
+		        },
+		        
+		    });
+		
+		function js2Table(jsondata){
+		 var table = document.createElement("table");
+		 table.setAttribute("id", "myDataTable");
+		 table.setAttribute("class", "display")
+		 var json_result = "";
+		 json_result += "<div>";
+         json_result += "<style>";
+         json_result += "table, th, td { border: 1px solid black;border-collapse: collapse;}th, td {padding: 5px;text-align: left; }";
+         json_result += "</style>";
+         json_result += "<table style=\"width:100%\">";
+         for(attribute in jsondata){
+         	if(typeof jsondata[attribute] == 'object'){
+         		json_result += "<tr><th scope = \"row\">" + attribute + "</th>";
+         		json_result += "<td><table>";
+         		for(sub in jsondata[attribute]){
+         			
+         			if(typeof jsondata[attribute][sub] == 'object'){
+         				json_result += "<tr>";
+         				json_result += "<td>";
+	         			for(sub2 in jsondata[attribute][sub])
+	         			{
+	         				json_result += "<th scope = \"row\">" + sub2 + "</th>";
+	         				json_result += "<td>" + jsondata[attribute][sub][sub2] + "</td>";
+	         			}
+	         			json_result += "</td>"
+	         			json_result += "</tr>";
+         			}
+         			else {
+         				json_result += " | "+ jsondata[attribute][sub] + " | ";
+             		}
+         			
+         		
+         		}
+         		json_result += "</table></td></tr>";
+         	}else{
+         		json_result += "<tr><th scope = \"row\">" + attribute + "</th><td>" + jsondata[attribute] + "</td></tr>";
+         	}
+         }
+         json_result += "</table></div>";
+         document.getElementById('status' + @index).innerHTML = json_result;	
+		}  
+		
+	    function js2JTable(jsondata){
+	    			console.log(jsondata)
+				 var table = document.createElement("table");
+				 table.setAttribute("id", "myDataTable");
+				 table.setAttribute("class", "display");
+				 var header = table.createTHead();
+				 var row = header.insertRow(0);
+				 var headerString = "["
+ 				 var json_headers = "";
+				 for (var key in jsondata[0]){
+				 	if(typeof jsondata[0][key] == 'object')
+				 	{
+				 		for(var sub in jsondata[0][key])
+				 		{
+				 			if(typeof jsondata[0][key][sub] == 'object')
+				 			{
+				 				for(var sub2 in jsondata[0][key][sub])
+				 				{
+				 					var secondaryCell = row.insertCell(-1);
+				 					secondaryCell.innerHTML = key + ": "+sub2;
+				 					headerString += '{"data":"'+key+"."+sub+"."+sub2+'"},'
+				 					json_headers += key+"."+sub+"."+sub2+"|"
+				 				}
+				 			}
+				 			else
+				 			{
+				 				var cell = row.insertCell(-1);
+				 				cell.innerHTML=key
+				 				headerString += '{"data":"'+key+'"},'
+				 				json_headers += key+"|"
+				 				break;
+				 			}
+				 		}
+				 	}
+				 	else
+				 	{
+				 		var cell = row.insertCell(-1);
+				 		cell.innerHTML=key
+				 		headerString += '{"data":"'+key+'"},'
+				 		json_headers += key+"|"
+				 	}
+				 }
+				 headerString=headerString.replace(/.$/,"]")
+				 
+				 console.log(headerString)
+				 console.log(json_headers)
+				 document.getElementById('status' + @index).innerHTML=""
+				 document.getElementById('status' + @index).appendChild(table);
+				 $('#myDataTable').DataTable().destroy() 
+				 
+				 var datatable = $('#myDataTable').DataTable( {
+				 		data: jsondata,
+				        processing: true,
+				        columns: JSON.parse(headerString),
+				        "scrollX": true
+				    } );
+				 $('#myDataTable').editableTableWidget();
+				 
+				 var btn = document.createElement("button");
+				 btn.innerHTML = "submit form";
+				 var header_array = json_headers.split("|");
+				 btn.onclick = function(event){
+				 	event.preventDefault();
+				 	var tab = document.getElementById('myDataTable');
+				 	var c = 0;
+				 	for (var key in jsondata[0]){
+					 	if(typeof jsondata[0][key] == 'object')
+					 	{
+					 		for(var sub in jsondata[0][key])
+					 		{
+					 			if(typeof jsondata[0][key][sub] == 'object')
+					 			{
+					 				for(var sub2 in jsondata[0][key][sub])
+					 				{
+					 					jsondata[0][key][sub][sub2] = tab.rows[1].cells[c].innerHTML;
+										c++;
+					 				}
+					 			}
+					 			else
+					 			{
+					 				jsondata[0][key] = tab.rows[1].cells[c].innerHTML;
+									c++;
+					 				break;
+					 			}
+					 		}
+					 	}
+					 	else
+					 	{
+							jsondata[0][key] = tab.rows[1].cells[c].innerHTML;
+							c++;
+					 	}
+				 	}
+				 	j_string = JSON.stringify(jsondata);
+				    console.log(j_string)
+				    j_string = document.getElementById('directory' + @index).value + j_string;
+					console.log(j_string)
+				    var xmlHttp = new XMLHttpRequest();
+				    xmlHttp.onreadystatechange = function() {
+						if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+							console.log(this.responseText)
+						}
+					}
+					xmlHttp.open("POST", "/submit_JSON", true);
+					xmlHttp.send(j_string);
+				    };
+				 
+				 document.getElementById('status' + @index).appendChild(btn);
+   			}
+   			
+		</script>		         
+  }  
