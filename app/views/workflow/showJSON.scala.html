@@ -152,6 +152,7 @@
 				 var table = document.createElement("table");
 				 table.setAttribute("id", "myDataTable");
 				 table.setAttribute("class", "display");
+				 var allLabels = []
 				 var header = table.createTHead();
 				 var row = header.insertRow(0);
 				 var headerString = "["
@@ -173,10 +174,20 @@
 				 			}
 				 			else
 				 			{
+				 				console.log(key)
 				 				var cell = row.insertCell(-1);
 				 				cell.innerHTML=key
-				 				headerString += '{"data":"'+key+'"},'
-				 				json_headers += key+"|"
+				 				
+				 				console.log(jsondata[0][key])
+				 				
+				 				for (var label in jsondata[0][key])
+				 				{
+				 					console.log(jsondata[0][key][label])
+				 					allLabels.push(jsondata[0][key][label])
+				 				}
+				 				 
+				 				headerString += '{"data":"'+key+ '"},'
+					 			json_headers += key+"|"
 				 				break;
 				 			}
 				 		}
@@ -185,7 +196,16 @@
 				 	{
 				 		var cell = row.insertCell(-1);
 				 		cell.innerHTML=key
-				 		headerString += '{"data":"'+key+'"},'
+				 		
+				 		if(key == "chosen_label")
+	 					{
+	 						headerString += '{"data":"'+key+ '", "visible": true, "type": "html"},'
+	 					}
+				 		else
+			 			{
+			 				headerString += '{"data":"'+key+'"},'
+			 			}
+				 		
 				 		json_headers += key+"|"
 				 	}
 				 }
@@ -193,25 +213,82 @@
 				 
 				 console.log(headerString)
 				 console.log(json_headers)
+				 console.log(allLabels)
 				 document.getElementById('status' + @index).innerHTML=""
 				 document.getElementById('status' + @index).appendChild(table);
 				 $('#myDataTable').DataTable().destroy() 
 				 
 				 var datatable = $('#myDataTable').DataTable( {
+					 	"dom": '<"toolbar">frtip',
 				 		data: jsondata,
 				        processing: true,
 				        columns: JSON.parse(headerString),
 				        "scrollX": true
 				    } );
+				 var dropdownHTML = '<select id="labels">'
+				 var AL = 'All Labels'
+				 dropdownHTML +=  '<option value="'+AL+'">'+AL+'</option>'
+					for (var d in allLabels)
+	                	{
+						l = allLabels[d]
+	                		dropdownHTML +=  '<option value="'+l+'">'+l+'</option>'
+	                	}
+				 dropdownHTML += '</select>'
+				 $("div.toolbar").html(dropdownHTML);
 				 $('#myDataTable').editableTableWidget();
+				 document.getElementById('labels').onchange = function () {
+					 	var dval = document.getElementById('labels').value;
+					 	var colCount = datatable.columns().header().length;
+					 	if (dval == AL)
+					 		{
+							 	var i = 3;
+							 	datatable.column(1).visible(false);
+							 	while (i < colCount)	
+							 		{
+							 			datatable.column(i).visible(true);
+							 			i += 1;
+							 		}
+					 		}
+					 	else
+					 		{
+						 		var i = 3;
+						 		datatable.column(1).visible(false);
+							 	while (i < colCount)
+							 	{
+							 		if (datatable.column(i).data()[0] != dval)
+							 			{
+							 				if(datatable.column(i).visible())
+							 					datatable.column(i).visible(!datatable.column(i).visible());
+							 			}
+							 		else
+							 			{
+							 				if(!datatable.column(i).visible())
+							 					datatable.column(i).visible(!datatable.column(i).visible());
+							 				if(!datatable.column(i+1).visible())
+							 					datatable.column(i+1).visible(!datatable.column(i+1).visible());
+							 				i += 1;
+							 			}
+							 		i += 1;
+							 	}
+					 		}
+					};
 				 
 				 var btn = document.createElement("button");
 				 btn.innerHTML = "submit form";
 				 var header_array = json_headers.split("|");
 				 btn.onclick = function(event){
 				 	event.preventDefault();
+				 	$('#labels').val(AL);
+				 	var i = 0;
+				 	var colCount = datatable.columns().header().length;
+				 	while (i < colCount)	
+				 		{
+				 			datatable.column(i).visible(true);
+				 			i += 1;
+				 		}
 				 	var tab = document.getElementById('myDataTable');
 				 	var c = 0;
+				 	
 				 	for (var key in jsondata[0]){
 					 	if(typeof jsondata[0][key] == 'object')
 					 	{
@@ -227,7 +304,11 @@
 					 			}
 					 			else
 					 			{
-					 				jsondata[0][key] = tab.rows[1].cells[c].innerHTML;
+					 				console.log(tab.rows[1].cells[c].innerHTML)
+					 				var labs = tab.rows[1].cells[c].innerHTML
+					 				var lis = labs.split(",")
+					 				console.log(lis)
+					 				jsondata[0][key] = lis;
 									c++;
 					 				break;
 					 			}
@@ -235,7 +316,37 @@
 					 	}
 					 	else
 					 	{
-							jsondata[0][key] = tab.rows[1].cells[c].innerHTML;
+					 		console.log(key)
+					 		if(key == "chosen_label")
+				 			{
+					 			var cval = document.getElementById('c_label').value;
+					 			if(cval != "")
+				 				{
+					 				 var c_html = '<select id=\"c_label\">'
+				 					 c_html +=  '<option value=\"'+cval+'\">'+cval+'</option>'
+				 					 c_html +=  '<option value=\"\"></option>'
+				 						for (var d in allLabels)
+				 		                	{
+				 							l = allLabels[d]
+				 							if(l != cval)
+			 								{
+			 									c_html +=  '<option value=\"'+l+'\">'+l+'</option>'
+			 								}
+				 		                	}
+				 					c_html += '</select>'
+				 					console.log(c_html)
+				 					jsondata[0][key] = c_html
+				 				}
+					 			else
+					 				{
+					 					jsondata[0][key] = tab.rows[1].cells[c].innerHTML;
+					 				}
+				 			}
+					 		else
+					 			{
+					 				jsondata[0][key] = tab.rows[1].cells[c].innerHTML;
+					 			}
+							
 							c++;
 					 	}
 				 	}
